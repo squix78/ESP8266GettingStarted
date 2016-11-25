@@ -25,7 +25,7 @@ Then you click on the `New Channel` button. Then fill out the form:
 
 ![Fill out the New Channel Form](images/NewChannelForm.png)
 
-Explanation: The name just helps you to recognize your channel among many others that you might create over time. The important part are the field names. These names will later show up in the chart and with this you are telling Thingspeak that the value you are sending later with the field1 attribute should be displayed as Temperature.
+Explanation: The name just helps you to recognize your channel among many others that you might create over time. The important parts are the field names. These names will later show up in the chart and with this you are telling Thingspeak that the value you are sending later with the field1 attribute should be displayed as Temperature.
 
 Now navigate to the API Keys tab and note the two generated keys:
 

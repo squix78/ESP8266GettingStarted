@@ -14,8 +14,9 @@ To build this project you can use the PlaneSpotterDemo which comes with the Weat
 `File > Examples > ESP8266 Weather Station > PlaneSpotterDemo`
 
 If you want to try out the Platformio IDE there is also a separate project on Github:
-Blog Post: <http://blog.squix.org/2016/07/esp8266-based-plane-spotter-how-to.html>
-Code: <https://github.com/squix78/esp8266-plane-spotter>
+
+* Blog Post: <http://blog.squix.org/2016/07/esp8266-based-plane-spotter-how-to.html>
+* Code: <https://github.com/squix78/esp8266-plane-spotter>
 
 ## The ESP8266 WorldClock
 

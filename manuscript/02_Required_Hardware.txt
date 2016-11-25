@@ -1,6 +1,6 @@
 # Required Hardware
 
-If you have bought an original Squix ESP8266 WeatherStation Kit from my shop (https://shop.squix.org) then you can jump right to the next chapter, since you already have the required hardware. If you live in the US you can purchase the WeatherStation from Amazon (https://www.amazon.com/dp/B01KE7BA3O/) as well. The Squix ESP8266 WeatherStation Kit has the advantage that everything fits together but you can of course also get the components from your preferred supplier. In this chapter I will quickly go through the minimal requirements and the options you have to to build your first WeatherStation.
+If you have bought an original Squix ESP8266 WeatherStation Kit from my shop (https://shop.squix.org) then you can jump right to the next chapter, since you already have the required hardware. If you live in the US you can purchase the WeatherStation from Amazon (<https://www.amazon.com/dp/B01KE7BA3O/>) as well. The Squix ESP8266 WeatherStation Kit has the advantage that everything fits together but you can of course also get the components from your preferred supplier. In this chapter I will quickly go through the minimal requirements and the options you have to to build your first WeatherStation.
 ![The ESP8266 Weather Station starter kit](images/WeatherStationBox.jpg)
 
 ## ESP8266 Module
@@ -15,4 +15,4 @@ With the display you also have many options: do you want the pixels to be white 
 ## Wires & Cables
 You will also need some wires to connect the display to the ESP8266. In case you want to connect the display directly the NodeMCU you will need at least four female-to-female jumper wires, since both the display and the NodeMCU have male pin headers. The wires don’t need to be long, 4” (10cm) are usually enough.
 
-To program the ESP8266 module you will also need a USB cable. In case of the NodeMCU this cable should have a micro-USB connector on the module side and a normal USB connector for your PC or Mac. 
+To program the ESP8266 module you will also need a USB cable. In case of the NodeMCU this cable should have a micro-USB connector on the module side and a normal USB connector for your PC or Mac.
