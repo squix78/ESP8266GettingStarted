@@ -1,5 +1,6 @@
 # Tool Setup
 In this chapter we will prepare your development environment by installing all the tools necessary. Drivers are needed to communicate with the ESP8266, a tool called “Arduino IDE” will let us write code, and a sample project will prove that the components are working well together.
+
 ![The NodeMCU ESP8266 Module](images/NodeMCU.png)
 
 ## Download and Install the Serial Driver

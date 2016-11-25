@@ -48,6 +48,7 @@ Now we are almost ready to get the weather station running on the ESP8266 for th
 ## Connecting the Hardware
 
 The WeatherStation Kit comes with an OLED display that has four connectors: `VCC`, `GND`, `SCL` and `SDA`. They have the following meaning:
+
 * `VCC` and `GND` are the power supply of the display. `VCC` is the positive supply voltage and `GND` stands for “ground”. They will be connected to `3V3` and `GND` on the NodeMCU board
 * `SCL` and `SDA` are the data lines of the I2C protocol. “SCL” stands for Serial Clock and “SDA” for Serial Data.
 
