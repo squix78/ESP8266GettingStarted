@@ -70,4 +70,28 @@ Please note: there are versions of the OLED display with swapped `GND` and `VCC`
 As mentioned earlier, there exists a little confusion about the pin names. The Arduino IDE uses the GPIO number given by the chip. The NodeMCU team who designed the board changed the pin naming for their LUA firmware. If you are programming a NodeMCU module you can use the printed `D#`names. If you use a generic ESP8266 module then you have to use the corresponding GPIO numbers. Here is a table of the mapping:
 
 | NodeMCU Index | ESP8266 Internal | NodeMCU Index | ESP8266 Internal | 
-|---------------|------------------|---------------|
+|---------------|------------------|---------------|------------------|
+| D0            | GPIO16           | D7            | GPIO13           |
+| D1            | GPIO5            | D8            | GPIO5            |
+| D2            | GPIO4            | D9            | GPIO3            |
+| D3            | GPIO0            | D10           | GPIO1            |
+| D4            | GPIO2            | D11           | GPIO9            |
+| D5            | GPIO14           | D12           | GPIO10           |
+| D6            | GPIO12           |               |                  |
+
+The NodeMCU index is the naming on the board, whereas the ESP8266 Internal column
+is the one you use in the Arduino IDE code: e.g. `D5` on the board is pin `GPIO14` in C/C++
+
+## First Run
+Now we’re all set to run the WeatherStation software for the first time. Click on the Upload arrow and wait until the compilation and the transfer have ended. Now you should see the OLED display lighting up and displaying a WiFi icon. The module should be trying now to acquire access to the wireless network you have defined earlier.
+
+This is just the beginning. In the next chapter I’ll give you some ideas what else you can build with the WeatherStation hardware.
+
+## Summary
+If everything went well you now have a working ESP8266 WeatherStation. Congratulations! Let’s look back what we did in this chapter:
+
+1. We used the WeatherStation example and created a working copy for us. All changes will be applied to the copy, not the original example. If you accidentally make your code unusable you can always go back to the example and start with a fresh copy.
+2. We installed several libraries by using the Arduino IDE Library Manager. Libraries help us to reuse code or binaries in many places without using barely maintainable copy/paste code.
+3. We created an API key from Wunderground. Every time we call the Wunderground API to update weather data we will send this key along so that Wunderground knows who we are. Many service providers use a similar scheme to control and limit usage of their services.
+4. We changed a few lines in the code to configure the WiFi settings, update interval, display pins, timezone and the API key for Wunderground.
+5. We connected the OLED display and the ESP8266 and uploaded the firmware.
