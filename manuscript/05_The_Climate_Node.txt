@@ -2,7 +2,7 @@
 
 So far we have created a device which is connect to the internet and uses an API to fetch weather data. But this is not really an Internet-of-Things application, after all we are just displaying data. In this chapter we will change that.
 
-## The Climate Node
+## The Climate Node Setup
 
 This project will enable you to collect humidity and temperature in one room of your house or apartment and display the values in another room on the WeatherStation. In order to do so you will need additional hardware which is not included in the basic WeatherStation Starter Kit:
 
@@ -11,4 +11,46 @@ This project will enable you to collect humidity and temperature in one room of 
 
 I will call this combo "The Climate Node". Now use the female-female jumpers to connect them like this:
 
-![Wiring for the Climate Node](images/ClimateNode.png)
+![Wiring for the Climate Node](images/ClimateNodeSketchWithDHT22.png)
+
+## Thingspeak Setup
+
+Thingspeak is a free cloud service which allows you to easily post (sensor) data, to visualize it and to retrieve it again using simple HTTP methods. I’d like to point out that you could also use Wunderground to store your climate data and it probably would be very easy to do as well. But I believe that for education purposes Thingspeak permits more degrees of freedom. After all you could also send read outs from a motion sensor and visualize this information on a chart. Thingspeak has some nice additional features which lets you program webhooks to trigger a push notification on your cell phone, etc.
+
+So first of all you have to sign up for a (free) account on Thingspeak. Go to <https://thingspeak.com/users/sign_up> and create the account. After you completed that process, log in to your new account and go to `My Channels`:
+
+![Navigate to My Channel](images/MyChannelMenu.png)
+
+Then you click on the `New Channel` button. Then fill out the form:
+
+![Fill out the New Channel Form](images/NewChannelForm.png)
+
+Explanation: The name just helps you to recognize your channel among many others that you might create over time. The important part are the field names. These names will later show up in the chart and with this you are telling Thingspeak that the value you are sending later with the field1 attribute should be displayed as Temperature.
+
+Now navigate to the API Keys tab and note the two generated keys:
+
+![Thingspeak API keys](images/ThingSpeakAPIKeys.png)
+
+The first one will allow you to write to this channel in Thingspeak and the second one will allow you to read from it later. Treat them as secrets and with care. Others might be able to spam your channel or to “steal” your data. We will use these keys soon enough… Also note the channel ID on top of the screen, in my case `76642`.
+
+## Programming the Climate Node
+
+Now we have all ingredients to post the climate data to Thingspeak. We just have to program the ESP8266 accordingly. Go to <https://github.com/squix78/esp8266-dht-thingspeak-logger> and download the code as Zip file (or optionally do a git check out).
+
+Now adapt the settings to your needs:
+Especially the Wifi settings and the Thingspeak API key have to be updated. Take the *Write API* key from the previous step. For testing you might also play with the update interval which is a number in seconds. Please be aware that the minimum update interval in Thingspeak is about 15 seconds. Pick a smaller interval and your updates will be ignored. Now flash your program to the Node MCU and your Climate node should start logging. To check the results you can go back to Thingspeak and look at the charts:
+
+![The Charts of your Climate Node](images/ThingSpeakCharts.png)
+
+## Displaying the data on the WeatherStation
+Now to the real easy part. Like a cook in the TV kitchen I have prepared this step a long time ago (possibly to your confusion;-)). The WeatherStationDemo that comes as an example with the WeatherStation library already contains everything needed to display your own Climate Node data!
+
+Look for these lines in the demo and replace the read api key and the channel ID with the ones you got in the Thingspeak step:
+
+```
+//Thingspeak Settings
+const String THINGSPEAK_CHANNEL_ID = "67284";
+const String THINGSPEAK_API_READ_KEY = "L2VIW20QVNZJBLAK";
+```
+
+If you didn’t remove the climate node section in your weather station code you just need to flash your WeatherStation with the updated API key and channel ID and voilà: you just successfully sent the temperature and humidity data from the next room once around the world just to display it on a tiny OLED display. I know some people (including my wife) who wouldn’t be impressed by that at all;-).Explanation: This last step might have been a bit confusing, since the tv cook had prepared everything hours before the TV show actually started, so here the summary in slow motion: the Weather Station library now comes with a class called Thingspeak client which does all the leg work. You pass in the channel id and API key and it downloads a JSON object and picks out just the last data set, since we are currently interested only in that. Have a look at <https://github.com/squix78/esp8266-weather-station/blob/master/ThingspeakClient.cpp> to understand what happens and maybe adapt/ extend it to your needs. Why not display the chart of the last 24 hours on the OLED display?
