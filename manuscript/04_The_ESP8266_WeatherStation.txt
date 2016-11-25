@@ -1,0 +1,12 @@
+# The ESP8266 WeatherStation
+
+In this chapter we will get the WeatherStation to run. We will install several libraries used for setting up access to the internet, for reading and parsing the data from the service providing your local weather forecasts, as well as a library to display the data on the OLED display. Then we will adjust the WeatherStation code to display your local weather information and get a so-called API key to access the weather forecast service.
+
+## Installing the libraries
+
+I> **Libraries**: If you are new to programming you might ask what libraries are. When we develop programs we use libraries to not have to invent the wheel over and over again. Libraries contain functionality that might be used in different places without creating copies of code which is hard to maintain. So for you libraries are a wonderful thing: you can concentrate on the things that really matter to you. In the case of the WeatherStation they provide a lot of functionality which normally would take you a lot of time to write yourself.
+
+In order to get the WeatherStation to compile you will have to download three libraries. The first library is the WeatherStation itself. This will give you some new entries in the Example menu of the Arduino IDE. The second one is to read and understand the data which it gets from the weather forecast service. And the third is needed to use the beautiful OLED display.
+
+
+Go to `Sketch > Include Library… > Manage Libraries…` and install these three libraries. Make sure that you always have the latest version of the libraries installed. Users have reported many issues which could be reduced by simply updating the library. Also make sure that you only have one version of each of the libraries installed.

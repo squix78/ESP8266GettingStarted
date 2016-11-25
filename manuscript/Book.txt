@@ -1,3 +1,4 @@
 01_Introduction.txt
 02_Required_Hardware.txt
 03_Tool_Setup.txt
+04_The_ESP8266_WeatherStation.txt

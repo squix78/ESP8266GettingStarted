@@ -44,7 +44,7 @@ From time to time you want to come back to the Board Manager and make sure that 
 
 Now your Arduino IDE knows about ESP8266 boards in general. But not all the ESP8266 boards are the same; there are subtle but important differences in available Flash Memory and how they can be programmed. The selection of the correct board also defines the names of the GPIO pins: the designers of the NodeMCU decided to introduce a completely new naming scheme for the pins. Instead of calling them `GPIO1`, `GPIO2` etc they decided to give them different numbers by using a “D”-prefix. So `D0` is `GPIO16`, `D1` is `GPIO5` and so on. By selecting a NodeMCU board you automatically have the D naming scheme available, and this helps a lot since these names are also printed on the module board.
 
-So let’s pick the correct board. If you bought the original Squix Starter Kit you will have to choose a `NodeMCU 1.0`: Go to `Tools > Board: * > NodeMCU 1.0 (ESP-12E Module)``
+So let’s pick the correct board. If you bought the original Squix Starter Kit you will have to choose a `NodeMCU 1.0`: Go to `Tools > Board: * > NodeMCU 1.0 (ESP-12E Module)`
 
 There is a plentitude of modules available. Please make sure that you have the correct board selected before you continue.
 
@@ -72,6 +72,7 @@ If you see something similar: congratulations! You have just set all the precond
 
 ## Summary
 Before we continue to the WeatherStation project let’s have a closer look at what we just accomplished:
+
 1. We installed a driver which lets us program the ESP8266 with custom code that we wrote. Which driver needs to be installed depends on the Serial-to-USB converter we use. Some ESP modules already have such a converter; others will need an additional one.
 2. We downloaded and installed the Arduino IDE. In the IDE we write the code, compile it and transfer it to the embedded device. If our code supports it we can even use the Serial Monitor to communicate with the device.
 3. We used an example project, called a Sketch, to test our setup. The sample project installs firmware which uses the WiFi module to scan for available WiFi access points. It repeatedly writes this data to the serial line, and we can display it by opening the Serial Monitor tool. Remember, in a serial communication both parties need to agree on the speed the characters are getting transmitted. The example sets this to 115200 baud.
