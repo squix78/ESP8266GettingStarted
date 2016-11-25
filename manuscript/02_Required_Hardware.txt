@@ -1,0 +1,4 @@
+# Required Hardware
+
+If you have bought an original Squix ESP8266 WeatherStation Kit from my shop (https://shop.squix.org) then you can jump right to the next chapter, since you already have the required hardware. If you live in the US you can purchase the WeatherStation from Amazon (https://www.amazon.com/dp/B01KE7BA3O/) as well. The Squix ESP8266 WeatherStation Kit has the advantage that everything fits together but you can of course also get the components from your preferred supplier. In this chapter I will quickly go through the minimal requirements and the options you have to to build your first WeatherStation.
+![The ESP8266 Weather Station starter kit](images/WeatherStationBox.jpg)
