@@ -2,3 +2,5 @@
 02_Required_Hardware.txt
 03_Tool_Setup.txt
 04_The_ESP8266_WeatherStation.txt
+05_The_Climate_Node.txt
+06_More_Projects.txt

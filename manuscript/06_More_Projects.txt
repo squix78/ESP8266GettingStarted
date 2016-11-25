@@ -1,0 +1,25 @@
+# More Projects
+
+In the last chapters you successfully set up the development environment to program the ESP8266 and got your first Internet-of-Things device running. While this chapter concludes this Getting Started Guide I hope it is just the beginning of many interesting IoT projects you will build.
+
+## The ESP8266 PlaneSpotter
+
+The ESP8266 PlaneSpotter is an additional project that you can build with the same hardware you used for the WeatherStation. After entering your coordinates it displays information on airplanes which enter a airspace defined by your parameters. I built this fun project because I see airplanes starting and landing from the near airport of Zurich. Since starting FlightRadar24 on my iPhone is not nearly as nerdy as building a dedicated device I went to work.
+
+![The ESP8266 PlaneSpotter in Action](images/PlaneSpotter.jpg)
+
+The PlaneSpotter uses the currently free API of adsbexchange.com to fetch information on airplanes close to the given coordinates every 30 seconds. Adsbexchange gets its data from hundreds of low cost repurposed DVB-T dongles which receive the ADS-B signal transmitted by aircrafts. Since data coverage in my area was not so good at the time I built my own receiver with a Raspberry Pi and a USD $10 USB TV dongle.
+
+To build this project you can use the PlaneSpotterDemo which comes with the WeatherStation library:
+`File > Examples > ESP8266 Weather Station > PlaneSpotterDemo`
+
+If you want to try out the Platformio IDE there is also a separate project on Github:
+Blog Post: <http://blog.squix.org/2016/07/esp8266-based-plane-spotter-how-to.html>
+Code: <https://github.com/squix78/esp8266-plane-spotter>
+
+## The ESP8266 WorldClock
+
+The WorldClock is yet another simple project which you can build with the WeatherStation hardware. And you already have a demo installed in your Arduino editor. Just go to
+`File > Examples > ESP8266 Weather Station > WorldClockDemo`
+
+![The ESP8266 World Clock](images/WorldClock.png)

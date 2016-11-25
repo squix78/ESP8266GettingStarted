@@ -13,7 +13,7 @@ To verify the library I implemented a few ideas which involved the OLED display.
 
 I decided to provide the right components needed for building the WeatherStation and to sell it as a kit for the ESP8266 WeatherStation. Quickly I had set up a simple PayPal shop on my blog. A supplier in China would ship the kit directly to buyers all over the world and after a few months WeatherStations were being programmed in more than 20 countries.
 
-You are now holding a guide to the WeatherStation in your hands. Thank you for your interest! You might have just found this guide on Amazon and you don’t have the hardware yet. Or you have already acquired the components on your own and are now looking for a guide to use them. Or you have bought the kit from my shop or my listing on Amazon. In all of these cases you quickly want to get started with the ESP8266 and I’ve tried very hard to make this as easy as possible for you. Please let me know if you see mistakes. You can reach out to me through dani.eichhorn@squix.ch or on Twitter: https://twitter.com/squix78
+You are now holding a guide to the WeatherStation in your hands. Thank you for your interest! You might have just found this guide on Amazon and you don’t have the hardware yet. Or you have already acquired the components on your own and are now looking for a guide to use them. Or you have bought the kit from my shop or my listing on Amazon. In all of these cases you quickly want to get started with the ESP8266 and I’ve tried very hard to make this as easy as possible for you. Please let me know if you see mistakes. You can reach out to me through <mailto:dani.eichhorn@squix.ch> or on Twitter: <https://twitter.com/squix78>
 
 Also make sure that you subscribe to my newsletter to stay updated with latest news around the ESP8266. You will get a maximum of 1-2 emails per month, I promise!
-http://blog.squix.org/subscribe
+<http://blog.squix.org/subscribe>
