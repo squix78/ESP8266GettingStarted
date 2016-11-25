@@ -1,0 +1,23 @@
+# Tool Setup
+In this chapter we will prepare your development environment by installing all the tools necessary. Drivers are needed to communicate with the ESP8266, a tool called “Arduino IDE” will let us write code, and a sample project will prove that the components are working well together.
+![The NodeMCU ESP8266 Module](images/NodeMCU.png)
+
+## Download and Install the Serial Driver
+
+To program the NodeMCU V1.0, your development platform (PC, Mac, Linux) needs to detect the Serial-To-USB adapter soldered onto the ESP8266 module. There are two different versions: some have the CP2102 Serial-To-USB adapter; others have the CH340. My guess is that most new modules come with the CH340 chip. If your module has the CP2102 converter then you can download and install the driver from here: https://www.silabs.com/products/mcu/Pages/USBtoUARTBridgeVCPDrivers.aspx
+
+
+In case your module comes with a CH340 serial-to-USB converter then download the drivers from here:
+ * Win: blog.squix.org/downloads/CH341SER.zip
+ * Mac: blog.squix.org/downloads/CH34x_Install.zip
+
+## The Arduino IDE
+
+The Arduino Integrated Development Environment (IDE) is the tool you will use to program the ESP8266. IDEs are more than just editors; they help you with various tasks during the development process. For me as a professional software developer the Arduino IDE is not a very powerful one. It lacks some features that I got used to and I am missing them every time I program for the ESP8266. But the Arduino IDE was not made for professional programmers, it was made with the beginner in mind and this is also the reason why we will use it here. If you are looking for more convenience, have a look at http://platformio.org/ or the ESP8266 integration into the Eclipse IDE.
+
+
+To install the Arduino IDE go to https://www.arduino.cc/en/Main/Software and download the latest version matching your operating system:
+ * For Mac OS X you can download a ZIP file which you then have to extract. Take the extracted application “Arduino” and move it to your Applications folder.
+ * For Windows you have the option between an executable installer and a ZIP file. The ZIP file might be the better option if you do not have administrator permissions on your system. The installer on the other hand can put the libraries in the proper places.
+
+Now you have a bare Arduino IDE which brings everything needed to write programs for the standard Arduino ATmega chips. But we want to write and compile code for the ESP8266, right?
