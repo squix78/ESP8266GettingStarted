@@ -8,5 +8,35 @@ I> **Libraries**: If you are new to programming you might ask what libraries are
 
 In order to get the WeatherStation to compile you will have to download three libraries. The first library is the WeatherStation itself. This will give you some new entries in the Example menu of the Arduino IDE. The second one is to read and understand the data which it gets from the weather forecast service. And the third is needed to use the beautiful OLED display.
 
-
 Go to `Sketch > Include Library… > Manage Libraries…` and install these three libraries. Make sure that you always have the latest version of the libraries installed. Users have reported many issues which could be reduced by simply updating the library. Also make sure that you only have one version of each of the libraries installed.
+
+![ESP8266 Weather Station Library](images/ESP8266WeatherStationLibrary.png)
+
+![SSD1306 OLED Library](images/SSD1306OledLibrary.png)
+
+![Json Streaming Parser Library](images/JsonStreamingParser.png)
+
+## Open the Weather Station Example
+
+You have now installed the three required libraries. Often Arduino libraries contain example sketches which behave like a template to kick-start your project. If you have already worked with the Arduino IDE you might have used other demo sketches before. In the last chapter we used the Wifi Scanner Sketch. Now we are going to use the WeatherStation template to get started.
+Go to `File > Examples > ESP8266 Weather Station > WeatherStationDemo`
+Save the new sketch with a good name in a location you will remember - but leave it open.
+
+## Getting the Wunderground API Key
+
+I> **API (Key)**: What is an API and what is an API Key? Application Programming Interfaces (APIs) are a well-defined way on how one piece of code can talk to another. This can be on the same device, but often refers to the communication between two devices connected by a network. For the WeatherStation we need to get current and forecast data in a machine-readable format. To do this we will call the API of a service called Wunderground. Wunderground has different price plans and we will use the Free plan which has some limitations to distinguish it from the per-pay plan. To have better control over the users who access the service we will have to get a short text value - the API key - before we can call it. You should treat API keys like a password and be careful with them. For instance, do not post them to a forum, and don’t commit them to a public code repository. If you do your key may be cancelled, and all your projects will fail!
+
+To get the Wunderground API key go to <https://www.wunderground.com/weather/api/d/pricing.html> and pick the “Stratus Developer” plan. Then get your API key from this page:
+
+![Wunderground API Page](images/WundergroundAPIKey.png)
+
+If you should forget your key you can always come back and get it here.
+
+
+## Configuring the Weather Station
+Earlier when you chose the WeatherStation example you created a copy of the code included in the library. This code needs to be adapted so that it works for you. There are better options than putting configuration into your code: we could for instance offer a web interface where you could configure your settings. This would be much better since you could change values without changing the code, which would require compiling a new firmware and sending it over to the device. But to get started we will try to keep things simple…
+* Let’s start with the **WiFi Settings**. Replace *yourssid* with the name of your WiFi network and *yourpassw0rd* with its password. I had problems with a network that contained a dash (“-“) in the SSID. If you are having problems consider this hint…
+* Next is the **update interval**. This value specifies how often the weather data should be updated from the internet. The default is 600 seconds (10 minutes). In my experience this is a good value, because you don’t have unlimited requests in your free Wunderground API account and the weather doesn’t change so often anyway.
+* Now to the **Display Settings**. If you attach the display as I show in the next chapter you don’t have to change anything here. `D3` and `D4` are the pin names in the NodeMCU module. If you get compilation errors about them make sure that you have set your board to NodeMCU V1.0,  if that is the module you are using. If you have another board just replace the pin numbers with the proper pin number, e.g. `5` or `6`.
+* Use the **Time Client Settings** section to adjust your local time zone offset compared to the UTC time zone. It also allows a half an hour offset, thanks to the user who lives in such a time zone and made me implement that. (Ignorance is a bliss until you get confronted with it…)
+* In the Wunderground section you can now use the **API key** you received in the previous section. Also set the **country and city** of the place you want to show. To figure out which values work you can modify this URL: <http://api.wunderground.com/api/3APIKEY/conditions/q/CA/San_Francisco.json> and replace `APIKEY` with yours and `CA` and `San_Francisco with your state or country and city.
