@@ -35,8 +35,23 @@ If you should forget your key you can always come back and get it here.
 
 ## Configuring the Weather Station
 Earlier when you chose the WeatherStation example you created a copy of the code included in the library. This code needs to be adapted so that it works for you. There are better options than putting configuration into your code: we could for instance offer a web interface where you could configure your settings. This would be much better since you could change values without changing the code, which would require compiling a new firmware and sending it over to the device. But to get started we will try to keep things simple…
+
 * Let’s start with the **WiFi Settings**. Replace *yourssid* with the name of your WiFi network and *yourpassw0rd* with its password. I had problems with a network that contained a dash (“-“) in the SSID. If you are having problems consider this hint…
 * Next is the **update interval**. This value specifies how often the weather data should be updated from the internet. The default is 600 seconds (10 minutes). In my experience this is a good value, because you don’t have unlimited requests in your free Wunderground API account and the weather doesn’t change so often anyway.
 * Now to the **Display Settings**. If you attach the display as I show in the next chapter you don’t have to change anything here. `D3` and `D4` are the pin names in the NodeMCU module. If you get compilation errors about them make sure that you have set your board to NodeMCU V1.0,  if that is the module you are using. If you have another board just replace the pin numbers with the proper pin number, e.g. `5` or `6`.
 * Use the **Time Client Settings** section to adjust your local time zone offset compared to the UTC time zone. It also allows a half an hour offset, thanks to the user who lives in such a time zone and made me implement that. (Ignorance is a bliss until you get confronted with it…)
 * In the Wunderground section you can now use the **API key** you received in the previous section. Also set the **country and city** of the place you want to show. To figure out which values work you can modify this URL: <http://api.wunderground.com/api/3APIKEY/conditions/q/CA/San_Francisco.json> and replace `APIKEY` with yours and `CA` and `San_Francisco with your state or country and city.
+
+For the moment ignore the `ThingSpeak` settings. You might use it in a future project (have a look at the Outlook chapter).
+Now we are almost ready to get the weather station running on the ESP8266 for the first time. But we need to wire the display to the NodeMCU first.
+
+## Connecting the Hardware
+
+The WeatherStation Kit comes with an OLED display that has four connectors: `VCC`, `GND`, `SCL` and `SDA`. They have the following meaning:
+* `VCC` and `GND` are the power supply of the display. `VCC` is the positive supply voltage and `GND` stands for “ground”. They will be connected to `3V3` and `GND` on the NodeMCU board
+* `SCL` and `SDA` are the data lines of the I2C protocol. “SCL” stands for Serial Clock and “SDA” for Serial Data.
+
+
+In the following diagram I used a breadboard and male-to-male jumpers to connect the components. But you can also connect them directly with four (colored) female-to-female jumpers. They come with the WeatherStation Kit. Just peel the first four wires off of the bundle and connect them according to the picture. The colors do not matter.
+
+![Wiring the Weather Station](images/Wiring.png)
