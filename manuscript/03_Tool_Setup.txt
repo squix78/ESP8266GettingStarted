@@ -11,7 +11,7 @@ To program the NodeMCU V1.0, your development platform (PC, Mac, Linux) needs to
 In case your module comes with a CH340 serial-to-USB converter then download the drivers from here:
 
 * Win: <http://blog.squix.org/downloads/CH341SER.zip>
-* Mac: <http://blog.squix.org/downloads/CH34x_Install.zip>
+* Mac: <https://blog.squix.org/wp-content/uploads/2016/12/CH34x_Install_V1.3.zip>
 
 ## The Arduino IDE
 
