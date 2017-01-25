@@ -1,0 +1,33 @@
+# ESP8266 Programming
+
+In this chapter we will have a look at the building blocks of an Arduino sketch. This will help you to understand and modify
+the WeatherStation which we will build in the next chapter. If you just want to get the WeatherStation running you can skip this
+chapter.
+
+## Preparation
+
+In this chapter we will work with exercises which you can download from GitHub. They contain several Arduino projects for the
+ESP8266. For an exercise open the related project in your Arduino IDE and try to solve the given task. If you get stuck or want
+to see an alternative solution open the project which ends with "_Solution":
+
+ * Exercise_04_01: contains the first exercise in chapter 4
+ * Exercise_04_01_Solution: contains a possible solution
+
+Now download the zip file from GitHub and extract it in a place you will find it later. There is a green "Clone or download"
+button which lets you download a zip file:
+<https://github.com/squix78/esp8266-getting-started>
+
+
+
+## The Arduino Sketch
+
+The Arduino platform was built with the beginner in mind. Compared to a normal C program the Arduino IDE hides a few things
+from you to simplify the setup. First of all you do not have to create a make file to build your code into an executable binary.
+The Arduino IDE also includes a default header file for you: #include "Arduino.h". This contains all definitions needed for a
+regular Arduino program.
+
+Another important change compared to a regular C/C++ program are the two default functions setup() and loop(). The first
+will be only called once during startup while the loop() method will be called repeatedly. On a normal Arduino hardware
+(Atmega chip) you can theoretically write code and never leave the loop() method again. The ESP8266 is a bit different here.
+If your operations run for too much time a so called *watchdog* will reset the ESP8266. You can prevent this by allowing the
+controller to do important operations while you are still in the main loop. Calling yield() or delay(ms) will do this.
