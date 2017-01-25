@@ -43,15 +43,14 @@ also use it to write messages from the ESP8266 back to our computer.
 
 Using the Serial object is fairly easy. You have to initialize it first:
 
-`Serial.begin(115200);`
+    Serial.begin(115200);
 
 This tells the Serial object that you want to communicate with a baud rate of `115200`. Remember to set the same transfer rate
 later in the serial console on your computer. Both partners in the communication need to have the same speed settings or you will
 just see garbage. If you want to send a message from your program to your computer you just this:
 
-`Serial.print("Hello ");`
-
-`Serial.println("World");`
+    Serial.print("Hello ");
+    Serial.println("World");
 
 Please have a look at a little difference between the first and the second line. The first uses a method called `print` and
 the second `println`. The only difference is that the later is adding a line break to the output.
