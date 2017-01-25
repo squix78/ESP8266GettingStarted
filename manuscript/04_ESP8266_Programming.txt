@@ -49,16 +49,27 @@ This tells the Serial object that you want to communicate with a baud rate of `1
 later in the serial console on your computer. Both partners in the communication need to have the same speed settings or you will
 just see garbage. If you want to send a message from your program to your computer you just this:
 
-`Serial.print("Hello ");
-Serial.println("World");
-`
+`Serial.print("Hello ");`
+
+`Serial.println("World");`
+
 Please have a look at a little difference between the first and the second line. The first uses a method called `print` and
 the second `println`. The only difference is that the later is adding a line break to the output.
 
-### Exercise 04.01
-
-Now it is time to write our first program. Open the project "Exercise_04_01" in your Arduino IDE and fill in the required
-code to print "1. Hello World", "2. Hello World" etc. Remember that you only need to initialize the Serial object once while
-you'll have to print "<number>. Hello world" as long as the code runs.
-
-Once you are happy with your solution upload the sketch to your Arduino by clicking ![](images/UploadButton.png)
+X> ## Exercise 04.01
+X>
+X> Now it is time to write our first program. Open the project "Exercise_04_01" in your Arduino IDE and fill in the required
+X> code to print "1. Hello World", "2. Hello World" etc. Remember that you only need to initialize the Serial object once while
+X> you'll have to print "<number>. Hello world" as long as the code runs.
+X>
+X> Once you are happy with your solution upload the sketch to your Arduino by clicking
+X>
+X> ![](images/UploadButton.png)
+X>
+X> If that was successful open the serial console by clicking on the magnifying glass:
+X>
+X> ![](images/SerialConsoleButton.png)
+X>
+X> Now your output should look something this:
+X>
+X> ![](images/Excercise_04_01_SerialConsole.png)
