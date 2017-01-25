@@ -72,3 +72,18 @@ X>
 X> Now your output should look something this:
 X>
 X> ![](images/Excercise_04_01_SerialConsole.png)
+
+If you want to learn more about the Serial object you can find more in the following link:
+
+<http://esp8266.github.io/Arduino/versions/2.3.0/doc/reference.html#serial>
+
+The exercise contains another important built-in function:
+
+    delay(1000);
+
+This instructs the processor to wait 1000 milliseconds or 1 second to continue with the execution. As mentioned earlier
+with this command you also give the processor time to handle other tasks, such as receiving or sending network packages
+over WiFi. In this context a call to `yield()` does the same as `delay(0)`. 
+
+
+##
