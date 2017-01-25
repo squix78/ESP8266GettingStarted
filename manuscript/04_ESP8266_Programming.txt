@@ -30,4 +30,35 @@ Another important change compared to a regular C/C++ program are the two default
 will be only called once during startup while the loop() method will be called repeatedly. On a normal Arduino hardware
 (Atmega chip) you can theoretically write code and never leave the loop() method again. The ESP8266 is a bit different here.
 If your operations run for too much time a so called *watchdog* will reset the ESP8266. You can prevent this by allowing the
-controller to do important operations while you are still in the main loop. Calling yield() or delay(ms) will do this.
+controller to do important operations while you are still in the main loop. Calling *yield()* or *delay(ms)* will do this.
+
+## Hello World: The serial console
+
+Every self respecting programming tutorial starts with a "Hello World" program. And I don't want to break with this tradition
+here. A Hello-World program usually does not more than printing these two words somewhere on the screen. But we are programming
+a micro controller which does not have a screen yet. So where can we display the text? We will use the Serial object to do that.
+While you are developing a program on the ESP8266 the micro controller is connected to the computer the Arduino IDE is running
+on. We use this connection to write a new binary onto the flash memory of the ESP8266. And while our program is running we can
+also use it to write messages from the ESP8266 back to our computer.
+
+Using the Serial object is fairly easy. You have to initialize it first:
+
+`Serial.begin(115200);`
+
+This tells the Serial object that you want to communicate with a baud rate of `115200`. Remember to set the same transfer rate
+later in the serial console on your computer. Both partners in the communication need to have the same speed settings or you will
+just see garbage. If you want to send a message from your program to your computer you just this:
+
+`Serial.print("Hello ");
+Serial.println("World");
+`
+Please have a look at a little difference between the first and the second line. The first uses a method called `print` and
+the second `println`. The only difference is that the later is adding a line break to the output.
+
+### Exercise 04.01
+
+Now it is time to write our first program. Open the project "Exercise_04_01" in your Arduino IDE and fill in the required
+code to print "1. Hello World", "2. Hello World" etc. Remember that you only need to initialize the Serial object once while
+you'll have to print "<number>. Hello world" as long as the code runs.
+
+Once you are happy with your solution upload the sketch to your Arduino by clicking ![](images/UploadButton.png)
