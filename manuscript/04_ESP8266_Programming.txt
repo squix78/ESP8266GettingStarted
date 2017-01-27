@@ -83,7 +83,55 @@ The exercise contains another important built-in function:
 
 This instructs the processor to wait 1000 milliseconds or 1 second to continue with the execution. As mentioned earlier
 with this command you also give the processor time to handle other tasks, such as receiving or sending network packages
-over WiFi. In this context a call to `yield()` does the same as `delay(0)`. 
+over WiFi. In this context a call to `yield()` does the same as `delay(0)`.
 
 
-##
+## Input/ Output: GPIO pins
+
+Now that we can talk to our micro processor over the serial line it is time to interact with the real world. Our ESP8266
+is equipped with several so called `General Purpose Input Output` or short GPIO pins. They can be used for many different
+applications sensing and generating digital signals of the 3.3 Volt range. This is important if you plan to use an external
+component with your ESP8266: hardware designed for older Arduino's is often using the 5V (CMOS) range. Using such a device without
+a logic level shifter might destroy your ESP8266.
+
+Using a GPIO pin is quite easy: first you tell the micro processor if you want to read or write from the pin. Then you do it.
+Here is the code for reading:
+
+      pinMode(PIN, INPUT);
+      int state = digitalRead(PIN);
+
+Unless you want to change the mode of a pin you only need to call pinMode() once. Please note that depending on the pin
+you can also use INPUT_PULLUP or INPUT_PULLDOWN. Writing to a pin is not much different:
+
+      pinMode(PIN, OUTPUT);
+      digitalWrite(PIN, HIGH); // or
+      digitalWrite(PIN, LOW);
+
+The second statement will show a `HIGH` level on `PIN` which will be 3.3V. The third statement will set the pin to
+`LOW` which is 0V. What values for `PIN`can you use? If you are using a generic ESP8266 module your pins will be labeled
+`GPIO0`, `GPIO1`, etc. To use pin GPIO you would write `digitalWrite(0, HIGH);`
+
+If you are using a NodeMCU things get a little bit more complicated. The original creators of the NodeMCU Lua firmware and
+the development module of the same name had the idea to give the pins different names. They are called `D0`, `D1`, etc.
+That by itself would not be confusing yet but they are not using the same digits, e.g. `GPIO1` is not equal to `D1`. Here
+is a table to map the pins:
+
+| Raw Module Name | NodeMCU & Wemos Name |
+|-----------------|----------------------|
+| GPIO0           | D3                   |
+| GPIO1           | D10                  |
+| GPIO2           | D4                   |
+| GPIO3           | D9                   |
+| GPIO4           | D2                   |
+| GPIO5           | D1                   |
+| GPIO6           | N/A                  |
+| GPIO7           | N/A                  |
+| GPIO8           | N/A                  |
+| GPIO9           | D11                  |
+| GPIO10          | D12                  |
+| GPIO11          | N/A                  |
+| GPIO12          | D6                   |
+| GPIO13          | D7                   |
+| GPIO14          | D5                   |
+| GPIO15          | D8                   |
+| GPIO16          | D0                   |
