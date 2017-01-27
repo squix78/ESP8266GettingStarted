@@ -135,3 +135,16 @@ is a table to map the pins:
 | GPIO14          | D5                   |
 | GPIO15          | D8                   |
 | GPIO16          | D0                   |
+
+![NodeMCU DevKit Pin Map <https://github.com/nodemcu/nodemcu-devkit-v1.0>](images/NODEMCU_DEVKIT_V1.0_PINMAP.png)
+
+X> ## Exercise 04.02
+X>
+X> In this exercise you are going to read from the button on your NodeMCU labelled with FLASH.
+X> This button is connected to the `D3` pin. Put the `D3` pin to input mode in the `setup()` method
+X> and read from the pin repeatedly in the `loop()` and write the results to the console.
+
+X> ## Exercise 04.03
+X>
+X> Let's control an LED! Your NodeMCU has one built in and it is connected to `D0`. Like in the previous
+X> example set the pin to the correct mode and then toggle it once per second.
