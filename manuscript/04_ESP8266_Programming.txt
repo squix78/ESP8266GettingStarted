@@ -55,7 +55,7 @@ just see garbage. If you want to send a message from your program to your comput
 Please have a look at a little difference between the first and the second line. The first uses a method called `print` and
 the second `println`. The only difference is that the later is adding a line break to the output.
 
-X> ## Exercise 04.01
+X> ## Exercise 04.01: Hello world!
 X>
 X> Now it is time to write our first program. Open the project "Exercise_04_01" in your Arduino IDE and fill in the required
 X> code to print "1. Hello World", "2. Hello World" etc. Remember that you only need to initialize the Serial object once while
@@ -138,13 +138,35 @@ is a table to map the pins:
 
 ![NodeMCU DevKit Pin Map <https://github.com/nodemcu/nodemcu-devkit-v1.0>](images/NODEMCU_DEVKIT_V1.0_PINMAP.png)
 
-X> ## Exercise 04.02
+X> ## Exercise 04.02: Must touch this!
 X>
 X> In this exercise you are going to read from the button on your NodeMCU labelled with FLASH.
 X> This button is connected to the `D3` pin. Put the `D3` pin to input mode in the `setup()` method
 X> and read from the pin repeatedly in the `loop()` and write the results to the console.
 
-X> ## Exercise 04.03
+X> ## Exercise 04.03: Led it shine!
 X>
 X> Let's control an LED! Your NodeMCU has one built in and it is connected to `D0`. Like in the previous
 X> example set the pin to the correct mode and then toggle it once per second.
+
+X> ## Exercise 04.04: Every breath you take! (Bonus for Experts)
+X>
+X> Pure blinking is boring. We want our little ESP8266 to live! Control the intensity of the LED and
+X> make it look as if the ESP8266 was breathing. Note: if the LED was on another pin than `D0` we
+X> would use pulse width modulation (PWM) and the `writeAnalog(PIN, INTENSITY)` method. But this feature
+X> is not available on `D0` so you will have to do this in your code.
+
+## Interrupts
+
+Depending on your age you might remember interrupts from your PC. They were always important to get your sound card
+play beautiful music. The ESP8266 also can be controlled by interrupts. In the previous exercises we were checking
+regularly for the state of a GPIO pin. This is fine if you are not doing anything else in the main loop. But you might
+miss a change in a state if it is very short and that is were the interrupts can help. With an interrupt handler
+you can tell the processor that you are interested in a specific type of change and a given pin. This is how it works:
+
+    attachInterrupt(PIN, callback, CHANGE);
+
+Callback is a method without parameter that gets called when there is a change on `PIN`. Instead of `CHANGE` you can
+also use `RISING` which triggers the callback then the pin changes from `LOW` to `HIGH` and FALLING for a change in the
+opposite direction. Please do not execute long tasks in the callback method. The ESP's watch dog will reset the processor
+if calling the interrupt takes too much time. You should not do much more than changing a flag.
