@@ -164,9 +164,22 @@ regularly for the state of a GPIO pin. This is fine if you are not doing anythin
 miss a change in a state if it is very short and that is were the interrupts can help. With an interrupt handler
 you can tell the processor that you are interested in a specific type of change and a given pin. This is how it works:
 
-    attachInterrupt(PIN, callback, CHANGE);
+    void buttonPressed() {
+      ...
+    }
 
-Callback is a method without parameter that gets called when there is a change on `PIN`. Instead of `CHANGE` you can
-also use `RISING` which triggers the callback then the pin changes from `LOW` to `HIGH` and FALLING for a change in the
+    void setup() {
+        pinMode(PIN, INPUT);
+        attachInterrupt(digitalPinToInterrupt(PIN), buttonPressed, CHANGE);
+    }
+
+
+`buttonPressed` is a method without parameter that gets called when there is a change on `PIN`. Instead of `CHANGE` you can
+also use `RISING` which triggers the callback then the pin changes from `LOW` to `HIGH` and `FALLING` for a change in the
 opposite direction. Please do not execute long tasks in the callback method. The ESP's watch dog will reset the processor
 if calling the interrupt takes too much time. You should not do much more than changing a flag.
+
+X> ## Exercise 04.05: I don't want to miss a thing!
+X>
+X> In this exercise we will setup an interrupt and turn an LED on and off with every press to the button. See what
+X> happens when you use different interrupt modes like `RISING`, `FALLING`and `CHANGE`.
