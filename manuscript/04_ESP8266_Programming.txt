@@ -213,9 +213,11 @@ The last few chapters were all about built in functions of the Arduino/ESP8266 p
 but they are part of the platform and are already installed. So how can we use the WiFi module of the ESP8266? First of all
 you need to know that the ESP8266 can operate as a WiFi client and as a access point. You can set this mode with:
 
-   #include <ESP8266WiFi.h>
-   [...]
-   WiFi.mode(m);
+    #include <ESP8266WiFi.h>
+
+    void setup() {
+      WiFi.mode(m);
+    }
 
 where m must be one of the following modes: `WIFI_AP` (access point), `WIFI_STA` (client), `WIFI_AP_STA` (AP and client)
 or `WIFI_OFF`.
