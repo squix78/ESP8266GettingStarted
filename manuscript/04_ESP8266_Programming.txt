@@ -1,4 +1,4 @@
-# ESP8266 Programming
+# ESP8266 Programming Basics
 
 In this chapter we will have a look at the building blocks of an Arduino sketch. This will help you to understand and modify
 the WeatherStation which we will build in the next chapter. If you just want to get the WeatherStation running you can skip this
@@ -138,7 +138,7 @@ is a table to map the pins:
 
 ![NodeMCU DevKit Pin Map <https://github.com/nodemcu/nodemcu-devkit-v1.0>](images/NODEMCU_DEVKIT_V1.0_PINMAP.png)
 
-X> ## Exercise 04.02: Must touch this!
+X> ## Exercise 04.02: Can't touch this!?
 X>
 X> In this exercise you are going to read from the button on your NodeMCU labelled with FLASH.
 X> This button is connected to the `D3` pin. Put the `D3` pin to input mode in the `setup()` method
@@ -182,4 +182,40 @@ if calling the interrupt takes too much time. You should not do much more than c
 X> ## Exercise 04.05: I don't want to miss a thing!
 X>
 X> In this exercise we will setup an interrupt and turn an LED on and off with every press to the button. See what
-X> happens when you use different interrupt modes like `RISING`, `FALLING`and `CHANGE`.
+X> happens when you use different interrupt modes like `RISING`, `FALLING` and `CHANGE`.
+
+## Measuring analog signals
+
+So far we can read and write the digital states `HIGH`and `LOW` but what if we want to deal with analog signals? The
+ESP has one Analog To Digital Converter (ADC) which can be used to measure voltage in the range 0 - 1V. To do that use
+the following command:
+
+    analogRead(A0);
+
+You can also use the `ADC` to measure the input voltage without any additional wiring. You have to instruct
+the processor that you want to measure the supply voltage rather than the value on `A0` with a special command outside
+the `setup()` and `loop()` method. Here is an example:
+
+    ADC_MODE(ADC_VCC);
+
+    void setup() {
+       Serial.begin(115200);
+    }
+
+    void loop() {
+       Serial.println(ESP.getVcc());
+       delay(500);
+    }
+
+## WiFi
+
+The last few chapters were all about built in functions of the Arduino/ESP8266 platform. Now we will start using libraries
+but they are part of the platform and are already installed. So how can we use the WiFi module of the ESP8266? First of all
+you need to know that the ESP8266 can operate as a WiFi client and as a access point. You can set this mode with:
+
+   #include <ESP8266WiFi.h>
+   [...]
+   WiFi.mode(m);
+
+where m must be one of the following modes: `WIFI_AP` (access point), `WIFI_STA` (client), `WIFI_AP_STA` (AP and client)
+or `WIFI_OFF`.
