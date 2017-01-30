@@ -196,6 +196,7 @@ You can also use the `ADC` to measure the input voltage without any additional w
 the processor that you want to measure the supply voltage rather than the value on `A0` with a special command outside
 the `setup()` and `loop()` method. Here is an example:
 
+{lang="cpp"}
     ADC_MODE(ADC_VCC);
 
     void setup() {
