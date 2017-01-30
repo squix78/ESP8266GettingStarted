@@ -305,3 +305,18 @@ or not. Let's look at how we can load content from a remote server:
       }
 
     }
+
+How does this work? First we define the SSID and password of the WiFi access point we want to connect to. Please note
+that there are better ways to do that. The WiFiManager (<https://github.com/tzapu/WiFiManager>) for instance starts
+the ESP8266 as access point if it cannot connect to any SSID. You then use your smart phone to configure the WiFi credentials
+and there is no need to hard code these into your firmware. But for the sake of simplicity let's ignore this here.
+
+On line `14` we start connecting to the defined access point and wait until the connection is established. After all
+there is no point to send requests to a server if the network connection is not confirmed yet.
+
+Line `49` sends the request to the server. The command `GET /guide/ HTTP/1.1\r\n` might look strange to you. This is how
+your browsers talks to the web server. `GET` is the command for the webserver, `/guide/` is the resource on the server
+we want to get and `HTTP/1.1` is the protocol that we are using. If you are interested how this works in detail have a look
+at this Wikipedia article: <https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol>.
+
+On line `63` we print out the response line by line as long as there is text coming in. 
