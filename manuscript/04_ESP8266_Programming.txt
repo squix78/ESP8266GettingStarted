@@ -223,7 +223,7 @@ which are part of the platform and are already installed. So how can we use the 
 you need to know that the ESP8266 can operate as a WiFi client and as a access point. You can set this mode with:
 
 {lang="cpp"}
-      WiFi.mode(m);
+    WiFi.mode(m);
 
 
 where `m` must be one of the following modes: `WIFI_AP` (access point), `WIFI_STA` (client), `WIFI_AP_STA` (AP and client)
@@ -234,5 +234,74 @@ or `WIFI_OFF`. Now let's connect to your access point:
 
 This will connect you to a access point given the `SSID` and the password. Please note that this call is not blocking.
 This means that the code will immediately proceed to the next instruction whether the ESP is connected to the access point
-or not. There are two techniques that you currently can use to make sure that the module is and stays connected to the AP:
-either you poll for the connection status or you use events to get notified about a change.
+or not. Let's look at how we can load content from a remote server:
+
+{lang="cpp"}
+    #include <ESP8266WiFi.h>
+
+    const char* ssid     = "SSID";
+    const char* password = "PASSW0RD";
+
+    const char* host = "www.squix.org";
+
+    void setup() {
+      Serial.begin(115200);
+
+      Serial.print("Connecting to ");
+      Serial.println(ssid);
+
+      WiFi.begin(ssid, password);
+
+      // Wait until WiFi is connected
+      while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+      }
+
+      Serial.println("");
+      Serial.println("WiFi connected");
+      Serial.println("IP address: ");
+      Serial.println(WiFi.localIP());
+    }
+
+    void loop() {
+      delay(5000);
+
+      Serial.print("connecting to ");
+      Serial.println(host);
+
+      // Use WiFiClient class to create TCP connections
+      WiFiClient client;
+      const int httpPort = 80;
+      if (!client.connect(host, httpPort)) {
+        Serial.println("connection failed");
+        return;
+      }
+
+      // We now create a URI for the request
+      String url = "/guide/";
+
+      Serial.print("Requesting URL: ");
+      Serial.println(url);
+
+      // This will send the request to the server
+      client.print(String("GET ") + url + " HTTP/1.1\r\n" +
+                   "Host: " + host + "\r\n" +
+                   "Connection: close\r\n\r\n");
+
+      unsigned long timeout = millis();
+      while (client.available() == 0) {
+        if (millis() - timeout > 5000) {
+          Serial.println(">>> Client Timeout !");
+          client.stop();
+          return;
+        }
+      }
+
+      // Read all the lines of the reply from server and print them to Serial
+      while(client.available()){
+        String line = client.readStringUntil('\r');
+        Serial.print(line);
+      }
+
+    }
