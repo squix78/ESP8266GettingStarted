@@ -15,6 +15,7 @@ to see an alternative solution open the project which ends with "_Solution":
 
 Now download the zip file from GitHub and extract it in a place you will find it later. There is a green "Clone or download"
 button which lets you download a zip file:
+
 <https://github.com/squix78/esp8266-getting-started>
 
 
@@ -26,11 +27,11 @@ from you to simplify the setup. First of all you do not have to create a make fi
 The Arduino IDE also includes a default header file for you: #include "Arduino.h". This contains all definitions needed for a
 regular Arduino program.
 
-Another important change compared to a regular C/C++ program are the two default functions setup() and loop(). The first
+Another important change compared to a regular C/C++ program are the two default functions `setup()` and `loop()`. The first
 will be only called once during startup while the loop() method will be called repeatedly. On a normal Arduino hardware
-(Atmega chip) you can theoretically write code and never leave the loop() method again. The ESP8266 is a bit different here.
+(Atmega chip) you can theoretically write code and never leave the `loop()` method again. The ESP8266 is a bit different here.
 If your operations run for too much time a so called *watchdog* will reset the ESP8266. You can prevent this by allowing the
-controller to do important operations while you are still in the main loop. Calling *yield()* or *delay(ms)* will do this.
+controller to do important operations while you are still in the main loop. Calling `yield()` or `delay(ms)` will do this.
 
 ## Hello World: The serial console
 
@@ -43,12 +44,14 @@ also use it to write messages from the ESP8266 back to our computer.
 
 Using the Serial object is fairly easy. You have to initialize it first:
 
+{lang="cpp"}
     Serial.begin(115200);
 
 This tells the Serial object that you want to communicate with a baud rate of `115200`. Remember to set the same transfer rate
 later in the serial console on your computer. Both partners in the communication need to have the same speed settings or you will
 just see garbage. If you want to send a message from your program to your computer you just this:
 
+{lang="cpp"}
     Serial.print("Hello ");
     Serial.println("World");
 
@@ -79,6 +82,7 @@ If you want to learn more about the Serial object you can find more in the follo
 
 The exercise contains another important built-in function:
 
+{lang="cpp"}
     delay(1000);
 
 This instructs the processor to wait 1000 milliseconds or 1 second to continue with the execution. As mentioned earlier
@@ -97,12 +101,14 @@ a logic level shifter might destroy your ESP8266.
 Using a GPIO pin is quite easy: first you tell the micro processor if you want to read or write from the pin. Then you do it.
 Here is the code for reading:
 
+{lang="cpp"}
       pinMode(PIN, INPUT);
       int state = digitalRead(PIN);
 
 Unless you want to change the mode of a pin you only need to call pinMode() once. Please note that depending on the pin
 you can also use INPUT_PULLUP or INPUT_PULLDOWN. Writing to a pin is not much different:
 
+{lang="cpp"}
       pinMode(PIN, OUTPUT);
       digitalWrite(PIN, HIGH); // or
       digitalWrite(PIN, LOW);
@@ -164,6 +170,7 @@ regularly for the state of a GPIO pin. This is fine if you are not doing anythin
 miss a change in a state if it is very short and that is were the interrupts can help. With an interrupt handler
 you can tell the processor that you are interested in a specific type of change and a given pin. This is how it works:
 
+{lang="cpp"}
     void buttonPressed() {
       ...
     }
@@ -190,6 +197,7 @@ So far we can read and write the digital states `HIGH`and `LOW` but what if we w
 ESP has one Analog To Digital Converter (ADC) which can be used to measure voltage in the range 0 - 1V. To do that use
 the following command:
 
+{lang="cpp"}
     analogRead(A0);
 
 You can also use the `ADC` to measure the input voltage without any additional wiring. You have to instruct
@@ -211,14 +219,20 @@ the `setup()` and `loop()` method. Here is an example:
 ## WiFi
 
 The last few chapters were all about built in functions of the Arduino/ESP8266 platform. Now we will start using libraries
-but they are part of the platform and are already installed. So how can we use the WiFi module of the ESP8266? First of all
+which are part of the platform and are already installed. So how can we use the WiFi module of the ESP8266? First of all
 you need to know that the ESP8266 can operate as a WiFi client and as a access point. You can set this mode with:
 
-    #include <ESP8266WiFi.h>
-
-    void setup() {
+{lang="cpp"}
       WiFi.mode(m);
-    }
 
-where m must be one of the following modes: `WIFI_AP` (access point), `WIFI_STA` (client), `WIFI_AP_STA` (AP and client)
-or `WIFI_OFF`.
+
+where `m` must be one of the following modes: `WIFI_AP` (access point), `WIFI_STA` (client), `WIFI_AP_STA` (AP and client)
+or `WIFI_OFF`. Now let's connect to your access point:
+
+{lang="cpp"}
+    WiFi.begin(WIFI_SSID, WIFI_PWD);
+
+This will connect you to a access point given the `SSID` and the password. Please note that this call is not blocking.
+This means that the code will immediately proceed to the next instruction whether the ESP is connected to the access point
+or not. There are two techniques that you currently can use to make sure that the module is and stays connected to the AP:
+either you poll for the connection status or you use events to get notified about a change.
