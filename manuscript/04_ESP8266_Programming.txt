@@ -354,9 +354,9 @@ actually talking to `www.google.ch`.
 
 X> ## Exercise 04.06: Better save than sorry!
 X>
-X> In this exercise we will start with the same program as I included in this chapter. But now you are going to change
-X> it to receive the search site from google on a secure channel. Do the following tasks:
+X> In this exercise we will start with the same program as I included earlier in this chapter. But now you are going to change
+X> the code to receive the search site from google on a secure channel. Complete the following tasks:
 X>
-X> 1. Change the host from www.squix.org to www.google.ch
-X> 2. Get the SHA1 finger print for www.google.ch
-X> 3. Add a check that this fingerprint matches www.google.ch
+X> 1. Change the host from `www.squix.org` to `www.google.ch`
+X> 2. Get the SHA1 finger print for `www.google.ch`
+X> 3. Add a check that this fingerprint matches `www.google.ch`
