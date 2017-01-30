@@ -234,7 +234,13 @@ or `WIFI_OFF`. Now let's connect to your access point:
 
 This will connect you to a access point given the `SSID` and the password. Please note that this call is not blocking.
 This means that the code will immediately proceed to the next instruction whether the ESP is connected to the access point
-or not. Let's look at how we can load content from a remote server:
+or not.
+
+## HTTP
+
+By connecting to the internet you either want to exchange data between your ESP8266 and the network. Let's look at how
+we can load content from a web server using the Hyper Text Transfer Protocol (HTTP). This protocol is the fundation of
+the internet.
 
 {lang="cpp"}
     #include <ESP8266WiFi.h>
@@ -311,12 +317,46 @@ that there are better ways to do that. The WiFiManager (<https://github.com/tzap
 the ESP8266 as access point if it cannot connect to any SSID. You then use your smart phone to configure the WiFi credentials
 and there is no need to hard code these into your firmware. But for the sake of simplicity let's ignore this here.
 
-On line `14` we start connecting to the defined access point and wait until the connection is established. After all
+On *line 14* we start connecting to the defined access point and wait until the connection is established. After all
 there is no point to send requests to a server if the network connection is not confirmed yet.
 
-Line `49` sends the request to the server. The command `GET /guide/ HTTP/1.1\r\n` might look strange to you. This is how
+*Line 49* sends the request to the server. The command `GET /guide/ HTTP/1.1\r\n` might look strange to you. This is how
 your browsers talks to the web server. `GET` is the command for the webserver, `/guide/` is the resource on the server
 we want to get and `HTTP/1.1` is the protocol that we are using. If you are interested how this works in detail have a look
-at this Wikipedia article: <https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol>.
+at this Wikipedia article: <https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol>. It
 
-On line `63` we print out the response line by line as long as there is text coming in. 
+On *line 63* we print out the response line by line as long as there is text coming in.
+
+Sadly this is quite complicated. Especially if we want to add encryption in the form of SSL to the connection.
+This protects your data and makes sure that you are talking to the right server. With the following command we can verify
+that the host matches the given SHA1 fingerprint.
+
+{lang="cpp"}
+    if (client.verify(fingerprint, host)) {
+      Serial.println("certificate matches");
+    } else {
+      Serial.println("certificate doesn't match");
+      return;
+    }
+
+How can you find this finger print? Your browser can help you with this. I will show it with Chrome. First open the page
+you need the finger print for, in my case `www.google.ch`. Then click on the little lock symbol and then on `Details`:
+
+![](images/ChromeCertificate.png)
+
+A click on `View Certificate` will bring up the detail window about Google's certificate:
+
+![](images/ChromeFingerprint.png)
+
+Scroll down to the bottom of the window copy the value behind `SHA1`. This is the finger print to verify that you are
+actually talking to `www.google.ch`.
+
+
+X> ## Exercise 04.06: Better save than sorry!
+X>
+X> In this exercise we will start with the same program as I included in this chapter. But now you are going to change
+X> it to receive the search site from google on a secure channel. Do the following tasks:
+X>
+X> 1. Change the host from www.squix.org to www.google.ch
+X> 2. Get the SHA1 finger print for www.google.ch
+X> 3. Add a check that this fingerprint matches www.google.ch
