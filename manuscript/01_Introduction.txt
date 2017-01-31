@@ -16,4 +16,4 @@ I decided to provide the right components needed for building the WeatherStation
 You are now holding a guide to the WeatherStation in your hands. Thank you for your interest! You might have just found this guide on Amazon and you don’t have the hardware yet. Or you have already acquired the components on your own and are now looking for a guide to use them. Or you have bought the kit from my shop or my listing on Amazon. In all of these cases you quickly want to get started with the ESP8266 and I’ve tried very hard to make this as easy as possible for you. Please let me know if you see mistakes. You can reach out to me through <mailto:dani.eichhorn@squix.ch> or on Twitter: <https://twitter.com/squix78>
 
 Also make sure that you subscribe to my newsletter to stay updated with latest news around the ESP8266. You will get a maximum of 1-2 emails per month, I promise!
-<http://blog.squix.org/subscribe>
+<https://blog.squix.org/subscribe>
