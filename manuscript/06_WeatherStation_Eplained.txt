@@ -97,26 +97,25 @@ key parameter. Then later in the value method I check what the last key was I ha
 the appropriate variable. For the example from before I would do
 
 {lang="cpp"}
-  [..]
-  void ExampleListener::key(String key) {
-    currentKey_ = key;
-  }
-
-  void ExampleListener::value(String key) {
-    if (currentKey_ == "name") {
-      name_ = value;
-    } else if (currentKey_ == "city") {
-      city_ = value;
+    void ExampleListener::key(String key) {
+      currentKey_ = key;
     }
-  }
-  [..]
+
+    void ExampleListener::value(String key) {
+      if (currentKey_ == "name") {
+        name_ = value;
+      } else if (currentKey_ == "city") {
+        city_ = value;
+      }
+    }
+
 
 In the stream of the object {“name”: “Eichhorn”} we will first get a call to the method key with the value `name`
 which we store in currentKey_. Next the parser will detect a value and call our value method with the value “Eichhorn”.
 The parser can now make the connection (or create a context) that after the key name the value Eichhorn should be stored
 in the member variable name_.
 
-If this example was to simple then have a look here: <https://github.com/squix78/esp8266-weather-station/blob/master/WundergroundClient.cpp>
+If this example was too simple then have a look here: <https://github.com/squix78/esp8266-weather-station/blob/master/WundergroundClient.cpp>
 This is the code which parses the responses from Wunderground for my WeatherStation.
 
 ### Conclusion
