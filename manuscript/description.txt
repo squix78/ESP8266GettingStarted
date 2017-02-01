@@ -1,0 +1,77 @@
+The ESP8266 is a programmable chip similar to the Arduino microcontrollers but it can be easily connected to a WiFi network.
+This guide helps you to get started with your first Internet-of-Things (IoT) project: a crisp OLED display shows
+weather information on several side-scrolling screens.
+
+In the first part of the book we cover how to setup the development environment. Summaries at the end of each chapter
+help to understand what has been accomplished. Info boxes explain important expressions and technologies to beginners.
+
+New! In a second part basic building blocks for programming the ESP8266 are explained: the structure of a Arduino
+sketch with the setup() and loop() functions, how to use the serial console, digitalRead and digitalWrite, interrupts
+and analogRead. Then we cover how to connect to a WiFi network and how to load data from a HTTP web server.
+Six exercises help to get practical experience with the topic: controlling the LED on the NodeMCU module, reading
+out the state of the FLASH button with interrupts, reading the current value of the supply voltage and accessing a
+web server over HTTPS and verifying its authenticity with a SHA1 fingerprint. The exercises and their solutions are
+available on Github: you start solving the tasks by filling in missing parts. Should you get stuck or you want to have
+a look at an alternative solution just open the solution sketch!
+
+After this introduction in ESP8266 programming we will get our first big project running: the ESP8266 WeatherStation!
+I will explain step-by-step what you will have to do to display the current weather in your area and a 3 day forecast.
+
+In the last part of the book three more projects are introduced: a plane spotting tool which fetches information from
+the internet about the planes that are above your head, a world clock which displays times in various timezones together
+with beautiful icons. Do you want to measure temperature and humidity outside your house? The ClimateNode project explains
+how to collect data from a second ESP8266, store it in the cloud and display it in an additional frame on your WeatherStation.
+
+This book is for beginners and ambitious programmers alike, but a basic understanding of programming is certainly helpful.
+In order to get started the following hardware is recommended: a ESP8266 NodeMCU V1.0, several jumper wires, a USB cable,
+a SSD1306 0.96" OLED display and (optional) a DHT11 or DHT22 temperature/ humidity sensor. These components are also
+available as Starter Kit in the Amazon US Store. Just search for "ESP8266 IoT Starter Kit with OLED display for Arduino IDE".
+If you live outside the US you can also buy the starter kit from the author on his site: blog.squix.org
+
+Here are the chapters of the book:
+
+Introduction
+
+Required Hardware
+ESP8266 Module
+OLED Display
+Wires & Cables
+
+Tool Setup
+Download and Install the Serial Driver
+The Arduino IDE
+Install the ESP8266 tool chain
+Open the Arduino IDE
+Selecting the Correct Board
+Setting the Correct Port
+Testing the Setup: WiFi Scanner
+Summary
+
+ESP8266 Programming Basics
+Preparation
+The Arduino Sketch
+Hello World: The serial console
+Input/ Output: GPIO pins
+Interrupts
+Measuring analog signals
+WiFi
+HTTP
+
+The ESP8266 WeatherStation
+Installing the libraries
+Open the Weather Station Example
+Getting the Wunderground API Key
+Configuring the Weather Station
+Connecting the Hardware
+First Run
+Summary
+
+Collecting and Displaying Local Data
+The Climate Node Setup
+Thingspeak Setup
+Programming the Climate Node
+Displaying the data on the WeatherStation
+
+More Projects
+The ESP8266 PlaneSpotter
+The ESP8266 WorldClock
