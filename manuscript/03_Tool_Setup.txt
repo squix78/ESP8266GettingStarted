@@ -1,12 +1,13 @@
-# Tool Setup
+﻿# Tool Setup
 In this chapter we will prepare your development environment by installing all the tools necessary. Drivers are needed to communicate with the ESP8266, a tool called “Arduino IDE” will let us write code, and a sample project will prove that the components are working well together.
 
 ![The NodeMCU ESP8266 Module](images/NodeMCU.png)
 
 ## Download and Install the Serial Driver
 
-To program the NodeMCU V1.0, your development platform (PC, Mac, Linux) needs to detect the Serial-To-USB adapter soldered onto the ESP8266 module. There are two different versions: some have the CP2102 Serial-To-USB adapter; others have the CH340. My guess is that most new modules come with the CH340 chip. If your module has the CP2102 converter then you can download and install the driver from here: <https://www.silabs.com/products/mcu/Pages/USBtoUARTBridgeVCPDrivers.aspx>
+To program the NodeMCU V1.0, your development platform (PC, Mac, Linux) needs to detect the Serial-To-USB adapter soldered onto the ESP8266 module. There are two different versions: some have the CP2102 Serial-To-USB adapter; others have the CH340. My guess is that most new modules come with the CH340 chip.
 
+If your module has the CP2102 converter then you can download and install the driver from here: <https://www.silabs.com/products/mcu/Pages/USBtoUARTBridgeVCPDrivers.aspx>
 
 In case your module comes with a CH340 serial-to-USB converter then download the drivers from here:
 
@@ -17,7 +18,6 @@ In case your module comes with a CH340 serial-to-USB converter then download the
 
 The Arduino Integrated Development Environment (IDE) is the tool you will use to program the ESP8266. IDEs are more than just editors; they help you with various tasks during the development process. For me as a professional software developer the Arduino IDE is not a very powerful one. It lacks some features that I got used to and I am missing them every time I program for the ESP8266. But the Arduino IDE was not made for professional programmers, it was made with the beginner in mind and this is also the reason why we will use it here. If you are looking for more convenience, have a look at <http://platformio.org/> or the ESP8266 integration into the Eclipse IDE.
 
-
 To install the Arduino IDE go to <https://www.arduino.cc/en/Main/Software> and download the latest version matching your operating system:
 
 * For Mac OS X you can download a ZIP file which you then have to extract. Take the extracted application “Arduino” and move it to your Applications folder.
@@ -25,23 +25,21 @@ To install the Arduino IDE go to <https://www.arduino.cc/en/Main/Software> and d
 
 Now you have a bare Arduino IDE which brings everything needed to write programs for the standard Arduino ATmega chips. But we want to write and compile code for the ESP8266, right?
 
-
 ## Install the ESP8266 tool chain
 
 A tool chain is the set of tools that lets you compile and create binaries for a certain platform. Since we want to create binaries for the ESP8266 we need a different tool chain than the one that comes with the plain vanilla Arduino IDE. To save you the hassle of downloading many different files and copying them into obscure locations, the Arduino IDE has a wonderful feature: the Board Manager. It lets you install support for many different chips and boards with just a few clicks. But first of all we have to tell the Arduino IDE where it should look for board definitions:
 
-
-## Open the Arduino IDE
+### Open the Arduino IDE
 
 * Go to your preferences/settings and in the text box `Additional Board Manager URLs` enter this URL: <http://arduino.esp8266.com/package_esp8266com_index.json>
-* Now go to `Tools > Board: … > Boards Manager…`, search the ESP8266 board and click Install.
+* Now go to `Tools > Board: … > Boards Manager…`, search for the ESP8266 board and click `Install`.
 * Get a coffee and wait until it finishes.
 
 ![Select the ESP8266 platform from the board manager](images/BoardManager.png)
 
-From time to time you want to come back to the Board Manager and make sure that you have the latest version of the ESP8266 tool chain installed. To do that simply click on the ESP8266 entry and select the latest version from the dropdown. Then click “Update”.
+From time to time you want to come back to the Board Manager and make sure that you have the latest version of the ESP8266 tool chain installed. To do that simply click on the ESP8266 entry and select the latest version from the dropdown. Then click `Update`.
 
-## Selecting the Correct Board
+### Selecting the Correct Board
 
 Now your Arduino IDE knows about ESP8266 boards in general. But not all the ESP8266 boards are the same; there are subtle but important differences in available Flash Memory and how they can be programmed. The selection of the correct board also defines the names of the GPIO pins: the designers of the NodeMCU decided to introduce a completely new naming scheme for the pins. Instead of calling them `GPIO1`, `GPIO2` etc they decided to give them different numbers by using a “D”-prefix. So `D0` is `GPIO16`, `D1` is `GPIO5` and so on. By selecting a NodeMCU board you automatically have the D naming scheme available, and this helps a lot since these names are also printed on the module board.
 
@@ -49,22 +47,22 @@ So let’s pick the correct board. If you bought the original Squix Starter Kit 
 
 There is a plentitude of modules available. Please make sure that you have the correct board selected before you continue.
 
-## Setting the Correct Port
+### Setting the Correct Port
 
-I> **Serial interface**: At the hardware level the ESP8266 is programmed through a serial interface. In short this is a very common communication interface which normally requires three lines: transmit (TX), receive (RX) and ground (GND). Both devices involved in the communication need to agree on the rate the characters are sent over the wire. This rate is usually measured in BAUD. One BAUD is equal to 1 character per second. Your average PC or Mac doesn’t have such a serial interface, so how can we program the ESP8266? This is done through a Serial-to-USB converter. Some ESPs already come with a built-in converter; others need an external one for programming.
+I> **Serial interface**: At the hardware level the ESP8266 is programmed through a serial interface. In short this is a very common communication interface which normally requires three lines: transmit (TX), receive (RX) and ground (GND). Both devices involved in the communication need to agree on the rate the characters are sent over the wire. This rate is usually measured in BAUD. 10 BAUD is equal to 1 character per second. Your average PC or Mac doesn’t have such a serial interface, so how can we program the ESP8266? This is done through a Serial-to-USB converter. Some ESPs already come with a built-in converter; others need an external one for programming.
 
-In an earlier step you already installed the drivers for this converter. If everything went well you should now be able to select the serial connection. It should show up in the Menu under `Tools > Port`. On my Mac the device is called `/dev/cu.SLAB_USBtoUART`. On a PC it should be listed as a COM port labelled `COM#` (where # is some number).
+In an earlier step you already installed the drivers for this converter. If everything went well and the board is plugged into your computer you should now be able to select the serial connection. It should show up in the Menu under `Tools > Port`. On my Mac the device is called `/dev/cu.SLAB_USBtoUART`. On a PC it should be listed as a COM port labelled `COM#` (where # is some number).
 
-If you cannot see a device that looks like the NodeMCU, try to unplug the ESP module and re-plug it after a few seconds. Also try a different USB plug. If that doesn’t help consider restarting your computer… Make sure that you installed the driver as mentioned in the chapter about drivers.
+If you cannot see a device that looks like the NodeMCU, try to unplug the ESP module and re-plug it after a few seconds. Also try a different USB socket. If that doesn’t help consider restarting your computer… Make sure that you installed the driver as mentioned in the chapter about drivers.
 
 ## Testing the Setup: WiFi Scanner
 Thanks for bearing with me until we get to the really cool part. We are going to run our first program on the NodeMCU! In the Menu of the Arduino IDE go to
-`File > Examples > ESP8266Wifi` and select `WiFiScan`
+`File > Examples > ESP8266Wifi` and select `WiFiScan`.
 A new window will open up. This window is your current project and is also called a “Sketch”. To compile and transfer the binary to the ESP8266 click on the green circle that contains an arrow on the very top of the window. If everything went well this will compile the sketch and upload the binary to the ESP. It might look something like this:
 
 ![Wifi Scanner Output](images/WifiScan.png)
 
-If you see `Done uploading.` in the window, then click on the magnifying glass on the top right of the window. This is the serial console that you can use to see output from the NodeMCU module, or also to send commands to the device. Make sure that the baud rate is set to `115200`. This rate is also set in the example code, and if you have a different setting the ESP will talk with a different speed than your PC listens. You can set the baud rate on the bottom left of the serial monitor. My output looks like this:
+If you see `Done uploading.` in the window, then click on the magnifying glass on the top right of the window. This is the serial console that you can use to see output from the NodeMCU module, or to send commands to the device. Make sure that the baud rate is set to `115200`. This rate is also set in the example code, and if you have a different setting the ESP will talk with a different speed than your PC listens. You can set the baud rate on the bottom left of the serial monitor. My output looks like this:
 
 ![Serial Console of the Wifi Scanner](images/WifiScanOutput.png)
 
