@@ -1,4 +1,4 @@
-# ESP8266 Programming Basics
+﻿# ESP8266 Programming Basics
 
 In this chapter we will have a look at the building blocks of an Arduino sketch. This will help you to understand and modify
 the WeatherStation which we will build in the next chapter. If you just want to get the WeatherStation running you can skip this
@@ -10,35 +10,33 @@ In this chapter we will work with exercises which you can download from GitHub. 
 ESP8266. For an exercise open the related project in your Arduino IDE and try to solve the given task. If you get stuck or want
 to see an alternative solution open the project which ends with "_Solution":
 
- * Exercise_04_01: contains the first exercise in chapter 4
- * Exercise_04_01_Solution: contains a possible solution
+ * `Exercise_04_01`: contains the first exercise in chapter 4
+ * `Exercise_04_01_Solution`: contains a possible solution
 
-Now download the zip file from GitHub and extract it in a place you will find it later. There is a green "Clone or download"
-button which lets you download a zip file:
+Now download the Zip file from GitHub and extract it in a place you will find it later. There is a green "Clone or download"
+button which lets you download a Zip file:
 
 <https://github.com/squix78/esp8266-getting-started>
-
-
 
 ## The Arduino Sketch
 
 The Arduino platform was built with the beginner in mind. Compared to a normal C program the Arduino IDE hides a few things
-from you to simplify the setup. First of all you do not have to create a make file to build your code into an executable binary.
-The Arduino IDE also includes a default header file for you: #include "Arduino.h". This contains all definitions needed for a
+from you to simplify the setup. First of all you do not have to create a makefile to build your code into an executable binary.
+The Arduino IDE also includes a default header file for you: `#include "Arduino.h"`. This contains all definitions needed for a
 regular Arduino program.
 
 Another important change compared to a regular C/C++ program are the two default functions `setup()` and `loop()`. The first
-will be only called once during startup while the loop() method will be called repeatedly. On a normal Arduino hardware
-(Atmega chip) you can theoretically write code and never leave the `loop()` method again. The ESP8266 is a bit different here.
-If your operations run for too much time a so called *watchdog* will reset the ESP8266. You can prevent this by allowing the
+will be only called once during startup, while the `loop()` method will be called repeatedly. On a normal Arduino hardware
+(ATmega chip) you can theoretically write code and never leave the `loop()` method again. The ESP8266 is a bit different here.
+If your operations run for too much time a so-called *watchdog* will reset the ESP8266. You can prevent this by allowing the
 controller to do important operations while you are still in the main loop. Calling `yield()` or `delay(ms)` will do this.
 
 ## Hello World: The serial console
 
-Every self respecting programming tutorial starts with a "Hello World" program. And I don't want to break with this tradition
-here. A Hello-World program usually does not more than printing these two words somewhere on the screen. But we are programming
-a micro controller which does not have a screen yet. So where can we display the text? We will use the Serial object to do that.
-While you are developing a program on the ESP8266 the micro controller is connected to the computer the Arduino IDE is running
+Every self-respecting programming tutorial starts with a "Hello World" program. And I don't want to break with this tradition
+here. A Hello-World program usually does no more than printing these two words somewhere on the screen. But we are programming
+a microcontroller which does not have a screen yet. So where can we display the text? We will use the Serial object to do that.
+While you are developing a program on the ESP8266, the microcontroller is connected to the computer that the Arduino IDE is running
 on. We use this connection to write a new binary onto the flash memory of the ESP8266. And while our program is running we can
 also use it to write messages from the ESP8266 back to our computer.
 
@@ -49,19 +47,19 @@ Using the Serial object is fairly easy. You have to initialize it first:
 
 This tells the Serial object that you want to communicate with a baud rate of `115200`. Remember to set the same transfer rate
 later in the serial console on your computer. Both partners in the communication need to have the same speed settings or you will
-just see garbage. If you want to send a message from your program to your computer you just this:
+just see garbage. If you want to send a message from your program to your computer you just do this:
 
 {lang="cpp"}
     Serial.print("Hello ");
     Serial.println("World");
 
-Please have a look at a little difference between the first and the second line. The first uses a method called `print` and
-the second `println`. The only difference is that the later is adding a line break to the output.
+Please have a look at the little difference between the first and the second line. The first uses a method called `print()` and
+the second `println()`. The only difference is that the latter adds a line break to the output.
 
 X> ## Exercise 04.01: Hello world!
 X>
-X> Now it is time to write our first program. Open the project "Exercise_04_01" in your Arduino IDE and fill in the required
-X> code to print "1. Hello World", "2. Hello World" etc. Remember that you only need to initialize the Serial object once while
+X> Now it is time to write our first program. Open the project `Exercise_04_01` in your Arduino IDE and fill in the required
+X> code to print "1. Hello World", "2. Hello World" etc. Remember that you only need to initialize the Serial object once, while
 X> you'll have to print "<number>. Hello world" as long as the code runs.
 X>
 X> Once you are happy with your solution upload the sketch to your Arduino by clicking
@@ -72,7 +70,7 @@ X> If that was successful open the serial console by clicking on the magnifying 
 X>
 X> ![](images/SerialConsoleButton.png)
 X>
-X> Now your output should look something this:
+X> Now your output should look something like this:
 X>
 X> ![](images/Excercise_04_01_SerialConsole.png)
 
@@ -85,28 +83,27 @@ The exercise contains another important built-in function:
 {lang="cpp"}
     delay(1000);
 
-This instructs the processor to wait 1000 milliseconds or 1 second to continue with the execution. As mentioned earlier
-with this command you also give the processor time to handle other tasks, such as receiving or sending network packages
+This instructs the processor to wait 1000 milliseconds (1 second) before continuing with the execution. As mentioned earlier
+with this command it also gives the processor time to handle other tasks, such as receiving or sending network packets
 over WiFi. In this context a call to `yield()` does the same as `delay(0)`.
 
+## Input/Output: GPIO pins
 
-## Input/ Output: GPIO pins
-
-Now that we can talk to our micro processor over the serial line it is time to interact with the real world. Our ESP8266
-is equipped with several so called `General Purpose Input Output` or short GPIO pins. They can be used for many different
-applications sensing and generating digital signals of the 3.3 Volt range. This is important if you plan to use an external
-component with your ESP8266: hardware designed for older Arduino's is often using the 5V (CMOS) range. Using such a device without
+Now that we can talk to our microcontroller over the serial line it is time to interact with the real world. Our ESP8266
+is equipped with several so-called `General Purpose Input Output` or in short `GPIO` pins. They can be used for many different
+applications such as sensing and generating digital signals of the 3.3 Volt range. This is important if you plan to use an external
+component with your ESP8266: hardware designed for older Arduinos often uses the 5V (CMOS) range. Using such a device without
 a logic level shifter might destroy your ESP8266.
 
-Using a GPIO pin is quite easy: first you tell the micro processor if you want to read or write from the pin. Then you do it.
+Using a GPIO pin is quite easy: first you tell the microcontroller if you want to read or write from the pin. Then you do it.
 Here is the code for reading:
 
 {lang="cpp"}
       pinMode(PIN, INPUT);
       int state = digitalRead(PIN);
 
-Unless you want to change the mode of a pin you only need to call pinMode() once. Please note that depending on the pin
-you can also use INPUT_PULLUP or INPUT_PULLDOWN. Writing to a pin is not much different:
+Unless you want to change the mode of a pin you only need to call `pinMode()` once. Please note that depending on the pin
+you can also use `INPUT_PULLUP` or `INPUT_PULLDOWN`. Writing to a pin is not much different:
 
 {lang="cpp"}
       pinMode(PIN, OUTPUT);
@@ -114,10 +111,12 @@ you can also use INPUT_PULLUP or INPUT_PULLDOWN. Writing to a pin is not much di
       digitalWrite(PIN, LOW);
 
 The second statement will show a `HIGH` level on `PIN` which will be 3.3V. The third statement will set the pin to
-`LOW` which is 0V. What values for `PIN`can you use? If you are using a generic ESP8266 module your pins will be labeled
-`GPIO0`, `GPIO1`, etc. To use pin GPIO you would write `digitalWrite(0, HIGH);`
+`LOW` which is 0V.
 
-If you are using a NodeMCU things get a little bit more complicated. The original creators of the NodeMCU Lua firmware and
+What values for `PIN` can you use? If you are using a generic ESP8266 module (not a NodeMCU) your pins will be labeled
+`GPIO0`, `GPIO1`, etc. To use pin GPIO0 you would write `digitalWrite(0, HIGH);`
+
+If you are using a NodeMCU things get a little bit more complicated. The original creators of the NodeMCU LUA firmware and
 the development module of the same name had the idea to give the pins different names. They are called `D0`, `D1`, etc.
 That by itself would not be confusing yet but they are not using the same digits, e.g. `GPIO1` is not equal to `D1`. Here
 is a table to map the pins:
@@ -165,9 +164,9 @@ X> is not available on `D0` so you will have to do this in your code.
 ## Interrupts
 
 Depending on your age you might remember interrupts from your PC. They were always important to get your sound card
-play beautiful music. The ESP8266 also can be controlled by interrupts. In the previous exercises we were checking
+to play beautiful music. The ESP8266 can also be controlled by interrupts. In the previous exercises we were checking
 regularly for the state of a GPIO pin. This is fine if you are not doing anything else in the main loop. But you might
-miss a change in a state if it is very short and that is were the interrupts can help. With an interrupt handler
+miss a change in a state if it is very short, and that is were the interrupts can help. With an interrupt handler
 you can tell the processor that you are interested in a specific type of change and a given pin. This is how it works:
 
 {lang="cpp"}
@@ -181,9 +180,9 @@ you can tell the processor that you are interested in a specific type of change 
     }
 
 
-`buttonPressed` is a method without parameter that gets called when there is a change on `PIN`. Instead of `CHANGE` you can
-also use `RISING` which triggers the callback then the pin changes from `LOW` to `HIGH` and `FALLING` for a change in the
-opposite direction. Please do not execute long tasks in the callback method. The ESP's watch dog will reset the processor
+`buttonPressed()` is a method without parameters that gets called when there is a change on `PIN`. Instead of `CHANGE` you can
+also use `RISING` which triggers the callback when the pin changes from `LOW` to `HIGH`, or `FALLING` for a change in the
+opposite direction. Please do not execute long tasks in the callback method. The ESP's watchdog will reset the processor
 if calling the interrupt takes too much time. You should not do much more than changing a flag.
 
 X> ## Exercise 04.05: I don't want to miss a thing!
@@ -193,14 +192,14 @@ X> happens when you use different interrupt modes like `RISING`, `FALLING` and `
 
 ## Measuring analog signals
 
-So far we can read and write the digital states `HIGH`and `LOW` but what if we want to deal with analog signals? The
+So far we can read and write the digital states `HIGH`and `LOW`, but what if we want to deal with analog signals? The
 ESP has one Analog To Digital Converter (ADC) which can be used to measure voltage in the range 0 - 1V. To do that use
 the following command:
 
 {lang="cpp"}
-    analogRead(A0);
+    unsigned value = analogRead(A0);
 
-You can also use the `ADC` to measure the input voltage without any additional wiring. You have to instruct
+You can also use the ADC to measure the input voltage without any additional wiring. You have to instruct
 the processor that you want to measure the supply voltage rather than the value on `A0` with a special command outside
 the `setup()` and `loop()` method. Here is an example:
 
@@ -218,29 +217,30 @@ the `setup()` and `loop()` method. Here is an example:
 
 ## WiFi
 
-The last few chapters were all about built in functions of the Arduino/ESP8266 platform. Now we will start using libraries
+The last few chapters were all about built-in functions of the Arduino/ESP8266 platform. Now we will start using libraries
 which are part of the platform and are already installed. So how can we use the WiFi module of the ESP8266? First of all
-you need to know that the ESP8266 can operate as a WiFi client and as a access point. You can set this mode with:
+you need to know that the ESP8266 can operate as a WiFi client (like a smartphone or laptop) and/or as an access point (like a WiFi router or extender). You can set this mode with:
 
 {lang="cpp"}
     WiFi.mode(m);
 
-
 where `m` must be one of the following modes: `WIFI_AP` (access point), `WIFI_STA` (client), `WIFI_AP_STA` (AP and client)
-or `WIFI_OFF`. Now let's connect to your access point:
+or `WIFI_OFF`.
+
+Now let's connect to your access point:
 
 {lang="cpp"}
     WiFi.begin(WIFI_SSID, WIFI_PWD);
 
-This will connect you to a access point given the `SSID` and the password. Please note that this call is not blocking.
-This means that the code will immediately proceed to the next instruction whether the ESP is connected to the access point
+This will connect you to an access point given its `SSID` and the password. Please note that this call is not blocking.
+This means that the code will immediately proceed to the next instruction whether the ESP successfully connects to the access point
 or not.
 
 ## HTTP
 
-By connecting to the internet you either want to exchange data between your ESP8266 and the network. Let's look at how
-we can load content from a web server using the Hyper Text Transfer Protocol (HTTP). This protocol is the fundation of
-the internet.
+By connecting to the internet you can exchange data between your ESP8266 and the network. Let's look at how
+we can load content from a web server using the Hyper Text Transfer Protocol (HTTP). This protocol is the foundation of
+the World Wide Web.
 
 {lang="cpp"}
     #include <ESP8266WiFi.h>
@@ -314,16 +314,16 @@ the internet.
 
 How does this work? First we define the SSID and password of the WiFi access point we want to connect to. Please note
 that there are better ways to do that. The WiFiManager (<https://github.com/tzapu/WiFiManager>) for instance starts
-the ESP8266 as access point if it cannot connect to any SSID. You then use your smart phone to configure the WiFi credentials
+the ESP8266 as an access point if it cannot connect to any SSID. You then use your smartphone to configure the WiFi credentials
 and there is no need to hard code these into your firmware. But for the sake of simplicity let's ignore this here.
 
 On *line 14* we start connecting to the defined access point and wait until the connection is established. After all
 there is no point to send requests to a server if the network connection is not confirmed yet.
 
 *Line 49* sends the request to the server. The command `GET /guide/ HTTP/1.1\r\n` might look strange to you. This is how
-your browsers talks to the web server. `GET` is the command for the webserver, `/guide/` is the resource on the server
+your browser talks to the web server. `GET` is the command for the webserver, `/guide/` is the resource on the server
 we want to get and `HTTP/1.1` is the protocol that we are using. If you are interested how this works in detail have a look
-at this Wikipedia article: <https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol>. It
+at this Wikipedia article: <https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol>.
 
 On *line 63* we print out the response line by line as long as there is text coming in.
 
@@ -339,8 +339,8 @@ that the host matches the given SHA1 fingerprint.
       return;
     }
 
-How can you find this finger print? Your browser can help you with this. I will show it with Chrome. First open the page
-you need the finger print for, in my case `www.google.ch`. Then click on the little lock symbol and then on `Details`:
+How can you find this fingerprint? Your browser can help you with this. I will show it with Chrome. First open the page
+you need the fingerprint for, in my case `www.google.ch`. Then click on the little lock symbol and then on `Details`:
 
 ![](images/ChromeCertificate.png)
 
@@ -348,15 +348,15 @@ A click on `View Certificate` will bring up the detail window about Google's cer
 
 ![](images/ChromeFingerprint.png)
 
-Scroll down to the bottom of the window copy the value behind `SHA1`. This is the finger print to verify that you are
+Scroll down to the bottom of the window and copy the value behind `SHA1`. This is the fingerprint to verify that you are
 actually talking to `www.google.ch`.
 
 
-X> ## Exercise 04.06: Better save than sorry!
+X> ## Exercise 04.06: Better safe than sorry!
 X>
 X> In this exercise we will start with the same program as I included earlier in this chapter. But now you are going to change
 X> the code to receive the search site from google on a secure channel. Complete the following tasks:
 X>
 X> 1. Change the host from `www.squix.org` to `www.google.ch`
-X> 2. Get the SHA1 finger print for `www.google.ch`
+X> 2. Get the SHA1 fingerprint for `www.google.ch`
 X> 3. Add a check that this fingerprint matches `www.google.ch`
