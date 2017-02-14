@@ -5,9 +5,9 @@ weather information on several side-scrolling screens.
 In the first part of the book we cover how to setup the development environment. Summaries at the end of each chapter
 help to understand what has been accomplished. Info boxes explain important expressions and technologies to beginners.
 
-New! In a second part, basic building blocks for programming the ESP8266 are explained: the structure of a Arduino
-sketch with the `setup()` and `loop()` functions, how to use the serial console, `digitalRead` and `digitalWrite`, interrupts
-and `analogRead`. Then we cover how to connect to a WiFi network and how to load data from a HTTP web server.
+In a second part, basic building blocks for programming the ESP8266 are explained: the structure of a Arduino
+sketch with the setup() and loop() functions, how to use the serial console, digitalRead and digitalWrite, interrupts
+and analogRead. Then we cover how to connect to a WiFi network and how to load data from a HTTP web server.
 Six exercises help to get practical experience with the topic: controlling the LED on the NodeMCU module, reading
 out the state of the FLASH button with interrupts, reading the current value of the supply voltage and accessing a
 web server over HTTPS and verifying its authenticity with a SHA1 fingerprint. The exercises and their solutions are
