@@ -1,7 +1,7 @@
 ﻿# Required Hardware
 
 The Starter Kit is available from two shops. You can buy it from the shop on my blog
-and shipping is available to almost all destionations: <https://blog.squix.org/product-category/starter-kits>
+and shipping is available to almost all destinations: <https://blog.squix.org/product-category/starter-kits>
 
 If you live in the US you can purchase the WeatherStation from Amazon (<https://www.amazon.com/dp/B01KE7BA3O/>) as well.
 Get a 10% discount by using this code during checkout on the Amazon store: `SKH3MS43`
