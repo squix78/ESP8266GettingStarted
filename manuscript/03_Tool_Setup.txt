@@ -79,7 +79,7 @@ how to find the problem and how to solve it.
 This is a tough one because this is a symptom for many different causes:
 
 * First please make sure that you have installed the correct driver, either for the CP2102 or the CH340. If you are not sure which one your ESP8266 has then better install both. The
-extra driver will only be used if you attach a matching hardware.
+extra driver will only be used if you attach a matching hardware. The photo below shows how the CP2102 from Silabs looks like.
 
 ![NodeMCU with a Silabs CP2102](images/CP2102.jpg)
 
@@ -87,10 +87,14 @@ extra driver will only be used if you attach a matching hardware.
 USB cable with the ESP8266. As a cross check you can also use the USB cable with another device (e.g. smartphone) and connect it to your
 PC. If the device is not recognized by your computer (and it is one that should be recognized) then throw the faulty cable away
 
+* Sometimes it helps to restart your computer or choose another USB port. It happened to me several times that one USB port stopped
+working and only after a restart or changing the port the device would show up.
+
 * It also happens relatively often that the NodeMCU is dead. But it is relatively hard to be 100% sure that it is really not working.
 If you previously didn't identify driver or cable as the cause for the problem
 we should focus on the NodeMCU module. Let's have a close look at the device. There are two LEDs: one on the ESP8266 module close to the antenna
-and the other one closer to the buttons. Do you see anything blink when you plug in the USB cable and connect it to your PC?
+and the other one closer to the buttons. Do you see anything blink when you plug in the USB cable and connect it to your PC? If it blinks
+then the ESP8266 could be OK but the Serial-to-USB converter could be damaged. If there is no light then there are still many possibilities.
 
 ## Summary
 Before we continue to the WeatherStation project let’s have a closer look at what we just accomplished:
