@@ -68,6 +68,28 @@ If you see `Done uploading.` in the window, then click on the magnifying glass o
 
 If you see something similar: congratulations! You have just set all the preconditions to run the WeatherStation code.
 
+## Trouble Shooting
+
+Let me be honest: there are many reasons why this setup might not work. But don't give up so quickly! With a careful and analytical
+approach we will manage to get the ESP8266 running! The following paragraphs are structured by symptom and I will give you some ideas
+how to find the problem and how to solve it.
+
+### No serial port shows up after you connect the ESP8266 to your computer
+
+This is a tough one because this is a symptom for many different causes:
+
+* First please make sure that you have installed the correct driver, either for the CP2102 or the CH340. If you are not sure which one your ESP8266 has then better install both. The
+extra driver will only be used if you attach a matching hardware.
+![NodeMCU with a Silabs CP2102](images/CP2102.jpg)
+
+* Another possible and frequent culprit is the USB cable. If you are sure that you installed the right drivers then try to use a different
+USB cable with the ESP8266. As a cross check you can also use the USB cable with another device (e.g. smartphone) and connect it to your
+PC. If the device is not recognized by your computer (and it is one that should be recognized) then throw the faulty cable away
+
+* It also happens relatively often that the NodeMCU is dead. But it is relatively hard to be 100% sure that it is really not working.
+If you previously didn't identify driver or cable as the cause for the problem
+we should focus on the NodeMCU module. Let's have a close look at the device. There are two LEDs: one on the ESP8266 module close to the antenna
+and the other one closer to the buttons. Do you see anything blink when you plug in the USB cable and connect it to your PC?
 
 ## Summary
 Before we continue to the WeatherStation project let’s have a closer look at what we just accomplished:
