@@ -80,6 +80,7 @@ This is a tough one because this is a symptom for many different causes:
 
 * First please make sure that you have installed the correct driver, either for the CP2102 or the CH340. If you are not sure which one your ESP8266 has then better install both. The
 extra driver will only be used if you attach a matching hardware.
+
 ![NodeMCU with a Silabs CP2102](images/CP2102.jpg)
 
 * Another possible and frequent culprit is the USB cable. If you are sure that you installed the right drivers then try to use a different
