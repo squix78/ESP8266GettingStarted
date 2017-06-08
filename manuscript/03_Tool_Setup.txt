@@ -113,7 +113,7 @@ since for every change in the code you had to compile, connect the pins, reset t
 boot mode pins and do a reset. Modules like the NodeMCU make this a lot easier since they have a special circuit which does all that
 when the serial-to-usb converter detects a special signal from your computer. Wonderful, right? Except: it doesn't always work.
 First let's try if the serial connection is working at all. Connect the NodeMCU to your computer and open the serial console.
-Now press the `RST` button and check what will be printed in serial console. Depending on the selected transfer speed
+Now press the `RST` button and check what will be printed in the console. Depending on the selected transfer speed
 (lower right corner of the serial monitor) you either see strange characters or something similar to this:
 
 {lang="cpp"}
