@@ -96,6 +96,31 @@ we should focus on the NodeMCU module. Let's have a close look at the device. Th
 and the other one closer to the buttons. Do you see anything blink when you plug in the USB cable and connect it to your PC? If it blinks
 then the ESP8266 could be OK but the Serial-to-USB converter could be damaged. If there is no light then there are still many possibilities.
 
+### Failure during upload like `espcomm_upload_mem failed`
+
+When you try to upload you see something like this in the console:
+
+{lang="cpp"}
+      warning: espcomm_sync failed
+      error: espcomm_open failed
+      error: espcomm_upload_mem failed
+      error: espcomm_upload_mem failed
+
+This means that for a number of reasons your computer could not upload the firmware to the NodeMCU. To understand what might be
+the cause we need to see what is happening during the upload of a new binary. Before the availability of easy-to-use developer modules
+like the NodeMCU you had to manually connect some pins of the ESP8266 to boot it into flash mode after a reset. This was very annoying
+since for every change in the code you had to compile, connect the pins, reset the ESP, wait until upload was complete, disconnect the
+boot mode pins and do a reset. Modules like the NodeMCU make this a lot easier since they have a special circuit which does all that
+when the serial-to-usb converter detects a special signal from your computer. Wonderful, right? Except: it doesn't always work. To get past
+this error I recommend to try one after the other following measures:
+
+* Press and hold the button labelled `FLASH` while pressing the button labelled `RST`. Then try again if the upload works. This button
+combination will manually set the ESP8266 into flash mode
+
+* The settings in the Arduino Tool menu are also a frequent source of problems: have you selected the right board (e.g. NodeMCU V1.0)
+and the right USB/Serial port? Try also different upload speeds. The NodeMCU should automatically detect the requested transfer speed but
+this does not always work. 
+
 ## Summary
 Before we continue to the WeatherStation project let’s have a closer look at what we just accomplished:
 
