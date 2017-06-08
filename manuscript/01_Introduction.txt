@@ -55,5 +55,5 @@ maximum of 1-2 emails per month, I promise!
 One more thing! If you like this project please have a look at my shop. I recently created a hardware kit containing a beautiful
 color display with touch screen. There are are several projects you can build with.
 
-[The ESP8266 WiFi Color Display Kit](images/WeatherStationColor.jpg)
+![The ESP8266 WiFi Color Display Kit](images/WeatherStationColor.jpg)
 You can find it here: https://blog.squix.org/product/esp8266-wifi-color-display-kit-2-4
