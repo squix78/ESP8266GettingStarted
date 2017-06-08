@@ -111,15 +111,30 @@ the cause we need to see what is happening during the upload of a new binary. Be
 like the NodeMCU you had to manually connect some pins of the ESP8266 to boot it into flash mode after a reset. This was very annoying
 since for every change in the code you had to compile, connect the pins, reset the ESP, wait until upload was complete, disconnect the
 boot mode pins and do a reset. Modules like the NodeMCU make this a lot easier since they have a special circuit which does all that
-when the serial-to-usb converter detects a special signal from your computer. Wonderful, right? Except: it doesn't always work. To get past
-this error I recommend to try one after the other following measures:
+when the serial-to-usb converter detects a special signal from your computer. Wonderful, right? Except: it doesn't always work.
+First let's try if the serial connection is working at all. Connect the NodeMCU to your computer and open the serial console.
+Now press the `RST` button and check what will be printed in serial console. Depending on the selected transfer speed
+(lower right corner of the serial monitor) you either see strange characters or something similar to this:
+
+{lang="cpp"}
+    ets Jan  8 2013,rst cause:2, boot mode:(3,6)
+
+    load 0x4010f000, len 1384, room 16
+    tail 8
+    chksum 0x2d
+    csum 0x2d
+    v3ffe85e8
+    ~ld
+
+I had to set the speed to 74880 baud to get this output. If you see this text then your computer and your ESP8266 can communicate
+with each other. Now we try to fix it by one of these measures:
 
 * Press and hold the button labelled `FLASH` while pressing the button labelled `RST`. Then try again if the upload works. This button
 combination will manually set the ESP8266 into flash mode
 
 * The settings in the Arduino Tool menu are also a frequent source of problems: have you selected the right board (e.g. NodeMCU V1.0)
 and the right USB/Serial port? Try also different upload speeds. The NodeMCU should automatically detect the requested transfer speed but
-this does not always work. 
+this does not always work.
 
 ## Summary
 Before we continue to the WeatherStation project let’s have a closer look at what we just accomplished:
