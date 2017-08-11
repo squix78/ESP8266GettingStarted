@@ -37,6 +37,11 @@ The first one will allow you to write to this channel in Thingspeak, and the sec
 
 Now we have all the ingredients to post the climate data to Thingspeak. We just have to program the ESP8266 accordingly. Go to <https://github.com/squix78/esp8266-dht-thingspeak-logger> and download the code as a Zip file (or optionally do a GitHub checkout).
 
+> Note, you will need to add the DHT libraries in the arduino IDE.
+> To do this select "Sketch"->"Include library"->"Manage Libraries"
+> You'll want to add  "DHT sensor library" by Adafruit 
+> and also "Adafruit Unified Sensor" by Adafruit
+
 Now adapt the settings to your needs:
 In particular the Wifi settings and the Thingspeak API key have to be updated. Take the *Write API* key from the previous step. For testing you might also play with the update interval which is a number in seconds. Please be aware that the minimum update interval in Thingspeak is about 15 seconds. Pick a smaller interval and your updates will be ignored. Now flash your program to the Node MCU and your Climate Node should start logging. To check the results you can go back to Thingspeak and look at the charts:
 
