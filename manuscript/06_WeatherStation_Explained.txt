@@ -100,7 +100,7 @@ the appropriate variable. For the example from before I would do
       currentKey_ = key;
     }
 
-    void ExampleListener::value(String key) {
+    void ExampleListener::value(String value) {
       if (currentKey_ == "name") {
         name_ = value;
       } else if (currentKey_ == "city") {
