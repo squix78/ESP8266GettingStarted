@@ -1,12 +1,11 @@
 ﻿# Required Hardware
 
 The Starter Kit is available from two shops. You can buy it from the shop on my blog
-and shipping is available to almost all destinations: <https://blog.squix.org/product-category/starter-kits>
+and shipping is available to almost all destinations: <https://thingpulse.com/product/esp8266-iot-electronics-starter-kit-weatherstation-planespotter-worldclock/>
 
 If you live in the US you can purchase the WeatherStation from Amazon (<https://www.amazon.com/dp/B01KE7BA3O/>) as well.
-Get a 10% discount by using this code during checkout on the Amazon store: `SKH3MS43`
 
-The Squix ESP8266 WeatherStation Kit has the advantage that everything fits together, but you can of course also get
+The ThingPulse ESP8266 WeatherStation Kit has the advantage that everything fits together, but you can of course also get
 the components from your preferred supplier. In this chapter I will quickly go through the minimal requirements and
 the options you have to build your first WeatherStation.
 

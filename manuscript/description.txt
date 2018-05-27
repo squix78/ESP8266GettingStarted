@@ -60,7 +60,7 @@ HTTP
 The ESP8266 WeatherStation
 Installing the libraries
 Open the Weather Station Example
-Getting the Wunderground API Key
+Getting the OpenWeatherMap API Key
 Configuring the Weather Station
 Connecting the Hardware
 First Run

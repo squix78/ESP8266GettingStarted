@@ -76,7 +76,7 @@ X> ![](images/Excercise_04_01_SerialConsole.png)
 
 If you want to learn more about the Serial object you can find more in the following link:
 
-<http://esp8266.github.io/Arduino/versions/2.3.0/doc/reference.html#serial>
+<https://arduino-esp8266.readthedocs.io/en/2.4.1/reference.html?highlight=serial#serial>
 
 The exercise contains another important built-in function:
 

@@ -22,13 +22,14 @@ You have now installed the three required libraries. Often Arduino libraries con
 Go to `File > Examples > ESP8266 Weather Station > WeatherStationDemo`
 Save the new sketch with a good name in a location you will remember - but leave it open.
 
-## Getting the Wunderground API Key
+## Getting the OpenWeatherMap API Key
 
-I> **API (Key)**: What is an API and what is an API Key? Application Programming Interfaces (APIs) are a well-defined way on how one piece of code can talk to another. This can be on the same device, but often refers to the communication between two devices connected by a network. For the WeatherStation we need to get current and forecast data in a machine-readable format. To do this we will call the API of a service called Wunderground. Wunderground has different price plans and we will use the Free plan which has some limitations to distinguish it from the per-pay plan. To have better control over the users who access the service we will have to get a short text value - the API key - before we can call it. You should treat API keys like a password and be careful with them. For instance, do not post them to a forum, and don’t commit them to a public code repository. If you do your key may be cancelled, and all your projects will fail!
+I> **API (Key)**: What is an API and what is an API Key? Application Programming Interfaces (APIs) are a well-defined way on how one piece of code can talk to another. This can be on the same device, but often refers to the communication between two devices connected by a network. For the WeatherStation we need to get current and forecast data in a machine-readable format. To do this we will call the API of a service called OpenWeatherMap. OpenWeatherMap has different price plans and we will use the Free plan which has some limitations to distinguish it from the per-pay plan. To have better control over the users who access the service we will have to get a short text value - the API key - before we can call it. You should treat API keys like a password and be careful with them. For instance, do not post them to a forum, and don’t commit them to a public code repository. If you do your key may be cancelled, and all your projects will fail!
 
-To get the Wunderground API key go to <https://www.wunderground.com/weather/api/d/pricing.html> and pick the “Stratus Developer” plan. Then get your API key from this page:
+To get the OpenWeatherMap API key go to <https://openweathermap.org/appid> and click on the sign up button. Then get your API key from this page:
 
-![Wunderground API Page](images/WundergroundAPIKey.png)
+![OpenWeatherMap Signup Page](images/OpenWeatherMapSignup.png)
+![OpenWeatherMap API Key Page](images/OpenWeatherMapKey.png)
 
 If you should forget your key you can always come back and get it here.
 
@@ -36,13 +37,10 @@ If you should forget your key you can always come back and get it here.
 Earlier when you chose the WeatherStation example you created a copy of the code included in the library. This code needs to be adapted so that it works for you. There are better options than putting configuration into your code: we could for instance offer a web interface where you could configure your settings. This would be much better since you could change values without changing the code, which would require compiling a new firmware and sending it over to the device. But to get started we will try to keep things simple…
 
 * Let’s start with the **WiFi Settings**. Replace *yourssid* with the name of your WiFi network and *yourpassw0rd* with its password. I had problems with a network that contained a dash (“-“) in the SSID. If you are having problems consider this hint…
-* Next is the **update interval**. This value specifies how often the weather data should be updated from the internet. The default is 600 seconds (10 minutes). In my experience this is a good value, because you don’t have unlimited requests in your free Wunderground API account and the weather doesn’t change so often anyway.
+* Next is the **update interval**. This value specifies how often the weather data should be updated from the internet. The default is 600 seconds (10 minutes). In my experience this is a good value, because you don’t have unlimited requests in your free OpenWeatherMap API account and the weather doesn’t change so often anyway.
 * Now to the **Display Settings**. If you attach the display as I show in the next chapter you don’t have to change anything here. `D3` and `D4` are the pin names in the NodeMCU module. If you get compilation errors about them make sure that you have set your board to `NodeMCU V1.0`, if that is the module you are using. If you have another board just replace the pin numbers with the proper pin number, e.g. `5` or `6`.
 * Use the **Time Client Settings** section to adjust your local time zone offset compared to the UTC time zone. It also allows a half-hour offset, thanks to the user who lives in such a time zone and made me implement that. (Ignorance is bliss until you get confronted with it…)
-* In the Wunderground section you can now use the **API key** you received in the previous section. Also set the **country and city** of the place you want to show. To figure out which values work you can modify this URL: <http://api.wunderground.com/api/3APIKEY/conditions/q/CA/San_Francisco.json> and replace `APIKEY` with yours and `CA` and `San_Francisco` with your state or country and city.
-
-For the moment ignore the `ThingSpeak` settings. You might use it in a future project (have a look at the "More Projects" chapter).
-Now we are almost ready to get the weather station running on the ESP8266 for the first time. But we need to wire the display to the NodeMCU first.
+* In the OpenWeatherMap section you can now use the **API key** you received in the previous section. Also set the **country and city** of the place you want to show. To figure out which values work you can modify this URL: <http://api.openweathermap.org/data/2.5/weather?q=zurich,ch&appid=APIKEY&units=metric> and replace `APIKEY` with yours and `CA` and `zurich,ch` with your state or country and city.
 
 ## Connecting the Hardware
 
@@ -89,6 +87,6 @@ If everything went well you now have a working ESP8266 WeatherStation. Congratul
 
 1. We used the WeatherStation example and created a working copy for us. All changes will be applied to the copy, not the original example. If you accidentally make your code unusable you can always go back to the example and start with a fresh copy.
 2. We installed several libraries by using the Arduino IDE Library Manager. Libraries help us to reuse code or binaries in many places without using barely maintainable copy/paste code.
-3. We created an API key from Wunderground. Every time we call the Wunderground API to update weather data we will send this key along so that Wunderground knows who we are. Many service providers use a similar scheme to control and limit usage of their services.
-4. We changed a few lines in the code to configure the WiFi settings, update interval, display pins, timezone and the API key for Wunderground.
+3. We created an API key from OpenWeatherMap. Every time we call the OpenWeatherMap API to update weather data we will send this key along so that OpenWeatherMap knows who we are. Many service providers use a similar scheme to control and limit usage of their services.
+4. We changed a few lines in the code to configure the WiFi settings, update interval, display pins, timezone and the API key for OpenWeatherMap.
 5. We connected the OLED display and the ESP8266 and uploaded the firmware.

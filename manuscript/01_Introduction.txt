@@ -57,4 +57,4 @@ color display with touch screen. There are are several projects you can build wi
 
 ![The ESP8266 WiFi Color Display Kit](images/WeatherStationColor.jpg)
 
-https://blog.squix.org/product/esp8266-wifi-color-display-kit-2-4
+https://thingpulse.com/product/esp8266-wifi-color-display-kit-2-4/

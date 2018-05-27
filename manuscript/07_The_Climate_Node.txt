@@ -15,7 +15,7 @@ I will call this combo "The Climate Node". Now use the female-to-female jumpers 
 
 ## Thingspeak Setup
 
-Thingspeak is a free cloud service which allows you to easily post (sensor) data, to visualize it and to retrieve it again using simple HTTP methods. I’d like to point out that you could also use Wunderground to store your climate data and it probably would be very easy to do as well. But I believe that for education purposes Thingspeak permits more degrees of freedom. After all you could also send readouts from a motion sensor and visualize this information on a chart. Thingspeak has some nice additional features which lets you program webhooks to trigger a push notification on your cell phone, etc.
+Thingspeak is a free cloud service which allows you to easily post (sensor) data, to visualize it and to retrieve it again using simple HTTP methods. I’d like to point out that you could also use OpenWeatherMap to store your climate data and it probably would be very easy to do as well. But I believe that for education purposes Thingspeak permits more degrees of freedom. After all you could also send readouts from a motion sensor and visualize this information on a chart. Thingspeak has some nice additional features which lets you program webhooks to trigger a push notification on your cell phone, etc.
 
 So first of all you have to sign up for a (free) account on Thingspeak. Go to <https://thingspeak.com/users/sign_up> and create the account. After you completed that process, log in to your new account and go to `My Channels`:
 
