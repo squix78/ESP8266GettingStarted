@@ -48,3 +48,9 @@ The NodeMCU Index is the name on the board, whereas the ESP8266 Internal column
 is the one you use in the Arduino IDE code: e.g. `D5` on the board is pin `GPIO14` in C/C++.
 
 ## Hello World
+
+In the last chapter we learned how to write the words "Hello World" to the serial console. Now we are going to do the same with the OLED display.
+
+I> **Displays and Pixels**: The smallest unit of a display is called a pixel. It is usually a single dot that - depending of the capabilities of the display - can have two or more colors. A pixel on our OLED display can only have one of two states: it is either on (white) or off (black). The geometry of a display is described by the number of pixels it has in the horizontal and the vertical dimension. The OLED display has 128 horizontal pixels and 64 vertical pixels which makes 8192 distinct pixels (128*64). Display libraries help you to address these pixels. Instead of setting single pixels you can draw objects such as text, lines or circles.
+
+To communicate with the display we have to prepare a few things. First we have to tell the micro controller which GPIO pins we are going to use to communicate with the display. 
