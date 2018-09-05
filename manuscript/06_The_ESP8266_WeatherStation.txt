@@ -4,15 +4,12 @@ In this chapter we will get the WeatherStation to run. We will install several l
 
 ## Installing the libraries
 
-I> **Libraries**: If you are new to programming you might ask what libraries are. When we develop programs we use libraries to not have to invent the wheel over and over again. Libraries contain functionality that might be used in different places without creating copies of code which is hard to maintain. So for you libraries are a wonderful thing: you can concentrate on the things that really matter to you. In the case of the WeatherStation they provide a lot of functionality which normally would take you a lot of time to write yourself.
 
-In order to get the WeatherStation to compile you will have to download three libraries. The first library is the WeatherStation itself. This will give you some new entries in the Example menu of the Arduino IDE. The second one is to read and understand the data which the program gets from the weather forecast service. And the third is needed to use the beautiful OLED display.
+Please make sure that you have installed the display library in the last chapter. In order to get the WeatherStation to compile you will have to download two more libraries. The first library is the WeatherStation itself. This will give you some new entries in the Example menu of the Arduino IDE. The second one is to read and understand the data which the program gets from the weather forecast service.
 
-Go to `Sketch > Include Library… > Manage Libraries…` and install the following three libraries. Make sure that you always have the latest version of the libraries installed. Users have reported many issues which could be reduced by simply updating the library. Also make sure that you only have one version of each of the libraries installed.
+Go to `Sketch > Include Library… > Manage Libraries…` and install the following two libraries:
 
 ![ESP8266 Weather Station Library](images/ESP8266WeatherStationLibrary.png)
-
-![SSD1306 OLED Library](images/SSD1306OledLibrary.png)
 
 ![Json Streaming Parser Library](images/JsonStreamingParser.png)
 
@@ -44,12 +41,7 @@ Earlier when you chose the WeatherStation example you created a copy of the code
 
 ## Connecting the Hardware
 
-The WeatherStation Kit comes with an OLED display that has four connectors: `VCC`, `GND`, `SCL` and `SDA`. They have the following meaning:
-
-* `VCC` and `GND` are the power supply of the display. `VCC` is the positive supply voltage and `GND` stands for “ground”. They will be connected to `3V3` and `GND` on the NodeMCU board
-* `SCL` and `SDA` are the data lines of the I2C protocol. `SCL` stands for Serial Clock and `SDA` for Serial Data.
-
-In the following diagram I used a breadboard and male-to-male jumpers to connect the components. But you can also connect them directly with four (colored) female-to-female jumpers. They come with the WeatherStation Kit. Just peel the first four wires off of the bundle and connect them according to the picture. The colors do not matter.
+We are going to use the same setup as described in the beginning of the last chapter. For completeness I'm going show the wiring diagram again: 
 
 ![Wiring the Weather Station](images/Wiring.png)
 
@@ -62,20 +54,6 @@ Please note: there are versions of the OLED display with swapped `GND` and `VCC`
 | D3          | SDA              |
 | D4          | SCL              |
 
-As mentioned earlier, there exists a little confusion about the pin names. The Arduino IDE uses the GPIO number given by the chip. The NodeMCU team who designed the board changed the pin naming for their LUA firmware. If you are programming a NodeMCU module you can use the printed `D#` names. If you use a generic ESP8266 module then you have to use the corresponding GPIO numbers. Here is a table of the mapping:
-
-| NodeMCU Index | ESP8266 Internal | NodeMCU Index | ESP8266 Internal | 
-|---------------|------------------|---------------|------------------|
-| D0            | GPIO16           | D7            | GPIO13           |
-| D1            | GPIO5            | D8            | GPIO5            |
-| D2            | GPIO4            | D9            | GPIO3            |
-| D3            | GPIO0            | D10           | GPIO1            |
-| D4            | GPIO2            | D11           | GPIO9            |
-| D5            | GPIO14           | D12           | GPIO10           |
-| D6            | GPIO12           |               |                  |
-
-The NodeMCU Index is the name on the board, whereas the ESP8266 Internal column
-is the one you use in the Arduino IDE code: e.g. `D5` on the board is pin `GPIO14` in C/C++.
 
 ## First Run
 Now we’re all set to run the WeatherStation software for the first time. Click on the Upload arrow and wait until the compilation and the transfer have ended. Now you should see the OLED display lighting up and displaying a WiFi icon. The module should now be trying to acquire access to the wireless network you have defined earlier.
