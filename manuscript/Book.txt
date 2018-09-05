@@ -2,7 +2,8 @@
 02_Required_Hardware.txt
 03_Tool_Setup.txt
 04_ESP8266_Programming.txt
-05_The_ESP8266_WeatherStation.txt
-06_WeatherStation_Explained.txt
-07_The_Climate_Node.txt
-08_More_Projects.txt
+05_Peripherals.txt
+06_The_ESP8266_WeatherStation.txt
+07_WeatherStation_Explained.txt
+08_The_Climate_Node.txt
+09_More_Projects.txt
