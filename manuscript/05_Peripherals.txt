@@ -57,9 +57,9 @@ Our OLED display exposes a I²C interface (often written as I2C). There are also
 
 To make sure that you don't have to read these data sheets people and companies develop drivers which simplify the usage of the external hardware. To set a single pixel by only using the I2C protocol you'd have to send several commands. This makes the development of higher level applications complicated and error prone. When I first started programming the ESP8266 there was no driver for the SSD1306 0.96" OLED display so I sat down and ported the driver from another micro controller to the ESP8266 architecture.
 
-## Hello World
+## Driver Initialization
 
-In the last chapter we learned how to write the words "Hello World" to the serial console. Now we are going to do the same with the OLED display. First of all we need to initialize the driver with three values: the address on the I2C bus, and the two pins we are going to use for communication. Since we are going to re-use the driver in different places of our sketch we are going to declare it globally. This means that driver variable is visible to both the setup() and the loop() function.
+Before we can draw to the display we need to lay the ground work for the driver. First of all we need to initialize the display driver with three values: the address on the I2C bus, and the two pins we are going to use for communication. Since we are going to re-use the driver in different places of our sketch we are going to declare it globally. This means that driver variable is visible to both the setup() and the loop() function.
 
 {lang="cpp"}
     SSD1306Wire display(0x3c, D3, D4);
@@ -72,6 +72,8 @@ Next we are going to initialize the display driver. This usually only needs to b
     display.init();
 
 This display driver first creates an image in the micro controller's internal memory. Once the whole display is defined this image is written as one to the display. This technique is called a frame buffer and avoids flickering on the display. The downside of this approach is that frame buffers use your micro controller's scarce working memory. However this display is so small that the frame buffer only uses 1KB of memory.
+
+## Basic Drawing Operations
 
 A normal drawing cycle consists of clearing the frame buffer, executing one or several drawing operations and then writing the frame buffer to the display:
 
@@ -102,6 +104,8 @@ X> Great, you drew your first object onto the screen! Now let's animate the obje
 X> line coordinates we can also use variables. Use a variable `y` to move the start and end points up and down. Remember
 Y> that operations you want to execute repeatedly need to be in the `loop()` method.
 
+## Hello World
+
 The title of this chapter is "Hello World" so let's write this text to the display. Writing text is almost as easy as drawing lines. The following method declaration shows you how to do it:
 
 {lang="cpp"}
@@ -117,4 +121,13 @@ The SSD1306 library comes with 3 built-in fonts: ArialMT_Plain_10, ArialMT_Plain
 X> ## Exercise 05.03: Hello World!
 X>
 X> Write the text "Hello World" to the OLED display. When you have this working go on and extend this exercise by adding a
-Y> counter to display "Hello World 1", "Hello World 2", etc. 
+Y> counter to display "Hello World 1", "Hello World 2", etc.
+
+The fonts we use here are bitmap fonts. Unlike the vector fonts you usually use in MS Word and other text processing applications these bitmap fonts have a fixed appearance (size, weight, etc). If you need another size you have to generate a font file and include it's proprietary format in your sketch. I created a web tool that lets you do that with as little effort as possible. On the site <http://oleddisplay.squix.ch/> and choose a font you would like to use in the sketch. There is even a preview that helps you to pick the right font and size. After you click the `Create` button you need to copy the results into a new tab in the Arduino IDE.
+
+X> ## Exercise 05.04: More Fonts, Please!
+X>
+X> Use the tool at <http://oleddisplay.squix.ch/> and create a file for the Font Rancho, 16pt, bold. Add a new tab to our
+X> Arduino sketch and name it Rancho_Regular_16.h. Copy the created font into this tab and save the file. In the main
+X> sketch add #include "Rancho_Regular_16.h" and use the new font by calling `display.setFont(Rancho_Regular_16);`. Finally
+Y> write "Crunchy Rancho" to the display. 
