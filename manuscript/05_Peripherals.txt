@@ -64,7 +64,7 @@ In the last chapter we learned how to write the words "Hello World" to the seria
 {lang="cpp"}
     SSD1306Wire display(0x3c, D3, D4);
 
-`Wire` is another name for the I2C protocol and `SSD1306 is the name of the chip driving the display. `0x3c` is the address the display listens to the I2C bus. In theory we could attach many different devices to the bus. A device only responds if its address is used during the communication. Very much like an email that only arrives in your inbox if your email address is used. `D3` is used to transmit the data (SDA) whereas `D4` is the GPIO pin how the micro controller tells all devices listening on the bus that the next piece of information is ready. This signal is called `clock` and the communication line SCL.
+`Wire` is another name for the I2C protocol and `SSD1306` is the name of the chip driving the display. `0x3c` is the address the display listens to the I2C bus. In theory we could attach many different devices to the bus. A device only responds if its address is used during the communication. Very much like an email that only arrives in your inbox if your email address is used. `D3` is used to transmit the data (SDA) whereas `D4` is the GPIO pin how the micro controller tells all devices listening on the bus that the next piece of information is ready. This signal is called `clock` and the communication line SCL.
 
 Next we are going to initialize the display driver. This usually only needs to be done once and belongs thus into the `setup()` function of your sketch:
 
@@ -94,4 +94,27 @@ X> ## Exercise 05.01: X marks the spot!
 X>
 X> Now you should have all the information you need to draw your first objects to the display. Open the sketch in the
 X> folder `Exercise_05_01` and draw two lines. The first from top left to bottom right, the second from bottom left to top
-X> right so that the form a white cross which spans the whole display. 
+X> right so that the form a white cross which spans the whole display.
+
+X> ## Exercise 05.02: Animate!
+X>
+X> Great, you drew your first object onto the screen! Now let's animate the objects. Instead of using fix values for the
+X> line coordinates we can also use variables. Use a variable `y` to move the start and end points up and down. Remember
+Y> that operations you want to execute repeatedly need to be in the `loop()` method.
+
+The title of this chapter is "Hello World" so let's write this text to the display. Writing text is almost as easy as drawing lines. The following method declaration shows you how to do it:
+
+{lang="cpp"}
+    void drawString(int16_t x, int16_t y, String text);
+
+The parameters `x` and `y` define the position from where the text will be drawn. This is the top left corner of the box surrounding the text. Now our graphics driver does not now which font type to use for drawing the text. We can do this with the `setFont(..)` method. Here is an example:
+
+{lang="cpp"}
+    display.setFont(ArialMT_Plain_10);
+
+The SSD1306 library comes with 3 built-in fonts: ArialMT_Plain_10, ArialMT_Plain_16 and ArialMT_Plain_24. They are defined in the file `OLEDDisplayFonts.h` which is included by default for you.
+
+X> ## Exercise 05.03: Hello World!
+X>
+X> Write the text "Hello World" to the OLED display. When you have this working go on and extend this exercise by adding a
+Y> counter to display "Hello World 1", "Hello World 2", etc. 
