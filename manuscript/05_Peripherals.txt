@@ -130,4 +130,30 @@ X>
 X> Use the tool at <http://oleddisplay.squix.ch/> and create a file for the Font Rancho, 16pt, bold. Add a new tab to our
 X> Arduino sketch and name it Rancho_Regular_16.h. Copy the created font into this tab and save the file. In the main
 X> sketch add #include "Rancho_Regular_16.h" and use the new font by calling `display.setFont(Rancho_Regular_16);`. Finally
-Y> write "Crunchy Rancho" to the display. 
+Y> write "Crunchy Rancho" to the display. * Please Note:* if you get a compile error `invalid conversion from 'const char*' to 'const uint8_t*` then please change the third line in "Rancho_regular_16.h" from 'const char Rancho_Regular_16' to 'const uint8_t Rancho_Regular_16'
+
+## More Drawing Methods
+
+So far we have seen the methods to draw lines and to print text to the display. But the SSD130 library has more to offer. But where can you find out about the other methods? Probably the easiest way is the source code of the library which is currently hosted at github: <https://github.com/ThingPulse/esp8266-oled-ssd1306/blob/master/src/OLEDDisplay.h>. This is the header file which describes the available method of the OLEDDisplay class. Here are some interesting examples:
+
+{lang="cpp"}
+    // Draw the border of a circle
+    void drawCircle(int16_t x, int16_t y, int16_t radius);
+
+    // Fill circle
+    void fillCircle(int16_t x, int16_t y, int16_t radius);
+
+With these two methods you can draw a hollow or filled circle. There is also another type of methods in this class to control aspects of the display:
+
+{lang="cpp"}
+    // Turn the display on
+    void displayOn(void);
+
+    // Turn the display offs
+    void displayOff(void);
+    
+    // Turn the display upside down
+    void flipScreenVertically();
+
+    // Mirror the display (to be used in a mirror or as a projector)
+    void mirrorScreen();
