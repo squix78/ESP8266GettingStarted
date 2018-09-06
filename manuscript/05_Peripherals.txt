@@ -53,7 +53,7 @@ I> **Displays and Pixels**: The smallest unit of a display is called a pixel. It
 
 In the micro controller world there are several ways to communicate with a display. These contracts between external hardware and the micro controller are called protocols and small displays usually either use I²C (Inter-Integrated Circuit, pronounced `I-squared-C`) or SPI (Serial Peripheral Interface). The protocols define how many physical lines are used for the communication, how many devices can participate, how data is represented and how fast the data can be transmitted.
 
-Our OLED display exposes a I²C interface (often written as I2C). There are also modules available that have both I2C and SPI or just SPI. These protocols define low-level communication. On top of that there is a hardware specific protocol which defines how functions of the hardware can be used, e.g. turning a pixel on or off. Manufacturers usually publish so called data sheets which describe in detail the available functions and how to use them.
+Our OLED display exposes a I²C interface (often written as I2C). There are also modules available that have both I2C and SPI or just SPI. These protocols define low-level communication. On top of that there is a hardware specific protocol which defines how functions of the hardware can be used, e.g. turning a pixel on or off. Manufacturers usually publish so called data sheets which describe in detail the available functions and how to use them. You can have a look at the data sheet of our display chip. But be warned, it's very technical! <https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf>
 
 To make sure that you don't have to read these data sheets people and companies develop drivers which simplify the usage of the external hardware. To set a single pixel by only using the I2C protocol you'd have to send several commands. This makes the development of higher level applications complicated and error prone. When I first started programming the ESP8266 there was no driver for the SSD1306 0.96" OLED display so I sat down and ported the driver from another micro controller to the ESP8266 architecture.
 
@@ -151,7 +151,7 @@ With these two methods you can draw a hollow or filled circle. There is also ano
 
     // Turn the display offs
     void displayOff(void);
-    
+
     // Turn the display upside down
     void flipScreenVertically();
 
