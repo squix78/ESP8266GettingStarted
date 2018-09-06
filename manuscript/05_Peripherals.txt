@@ -47,10 +47,51 @@ As mentioned earlier, there exists a little confusion about the pin names. The A
 The NodeMCU Index is the name on the board, whereas the ESP8266 Internal column
 is the one you use in the Arduino IDE code: e.g. `D5` on the board is pin `GPIO14` in C/C++.
 
+## Displays, Drivers and Protocols
+
+I> **Displays and Pixels**: The smallest unit of a display is called a pixel. It is usually a single dot that - depending of the capabilities of the display - can have two or more colors. A pixel on our OLED display can only have one of two states: it is either on (white) or off (black). The geometry of a display is described by the number of pixels it has in the horizontal and the vertical dimension. The OLED display has 128 horizontal pixels and 64 vertical pixels which gives us 128 * 64 = 8192 distinct pixels. Display libraries help you to address these pixels. Instead of setting single pixels you can draw objects such as text, lines or circles.
+
+In the micro controller world there are several ways to communicate with a display. These contracts between external hardware and the micro controller are called protocols and small displays usually either use I²C (Inter-Integrated Circuit, pronounced `I-squared-C`) or SPI (Serial Peripheral Interface). The protocols define how many physical lines are used for the communication, how many devices can participate, how data is represented and how fast the data can be transmitted.
+
+Our OLED display exposes a I²C interface (often written as I2C). There are also modules available that have both I2C and SPI or just SPI. These protocols define low-level communication. On top of that there is a hardware specific protocol which defines how functions of the hardware can be used, e.g. turning a pixel on or off. Manufacturers usually publish so called data sheets which describe in detail the available functions and how to use them.
+
+To make sure that you don't have to read these data sheets people and companies develop drivers which simplify the usage of the external hardware. To set a single pixel by only using the I2C protocol you'd have to send several commands. This makes the development of higher level applications complicated and error prone. When I first started programming the ESP8266 there was no driver for the SSD1306 0.96" OLED display so I sat down and ported the driver from another micro controller to the ESP8266 architecture.
+
 ## Hello World
 
-In the last chapter we learned how to write the words "Hello World" to the serial console. Now we are going to do the same with the OLED display.
+In the last chapter we learned how to write the words "Hello World" to the serial console. Now we are going to do the same with the OLED display. First of all we need to initialize the driver with three values: the address on the I2C bus, and the two pins we are going to use for communication. Since we are going to re-use the driver in different places of our sketch we are going to declare it globally. This means that driver variable is visible to both the setup() and the loop() function.
 
-I> **Displays and Pixels**: The smallest unit of a display is called a pixel. It is usually a single dot that - depending of the capabilities of the display - can have two or more colors. A pixel on our OLED display can only have one of two states: it is either on (white) or off (black). The geometry of a display is described by the number of pixels it has in the horizontal and the vertical dimension. The OLED display has 128 horizontal pixels and 64 vertical pixels which makes 8192 distinct pixels (128*64). Display libraries help you to address these pixels. Instead of setting single pixels you can draw objects such as text, lines or circles.
+{lang="cpp"}
+    SSD1306Wire display(0x3c, D3, D4);
 
-To communicate with the display we have to prepare a few things. First we have to tell the micro controller which GPIO pins we are going to use to communicate with the display. 
+`Wire` is another name for the I2C protocol and `SSD1306 is the name of the chip driving the display. `0x3c` is the address the display listens to the I2C bus. In theory we could attach many different devices to the bus. A device only responds if its address is used during the communication. Very much like an email that only arrives in your inbox if your email address is used. `D3` is used to transmit the data (SDA) whereas `D4` is the GPIO pin how the micro controller tells all devices listening on the bus that the next piece of information is ready. This signal is called `clock` and the communication line SCL.
+
+Next we are going to initialize the display driver. This usually only needs to be done once and belongs thus into the `setup()` function of your sketch:
+
+{lang="cpp"}
+    display.init();
+
+This display driver first creates an image in the micro controller's internal memory. Once the whole display is defined this image is written as one to the display. This technique is called a frame buffer and avoids flickering on the display. The downside of this approach is that frame buffers use your micro controller's scarce working memory. However this display is so small that the frame buffer only uses 1KB of memory.
+
+A normal drawing cycle consists of clearing the frame buffer, executing one or several drawing operations and then writing the frame buffer to the display:
+
+{lang="cpp"}
+    display.clear();
+    display.setColor(WHITE);
+    display.drawLine(0, 0, 10, 10);
+    display.display();
+
+Depending on whether you want to do this just once or repeatedly this goes into the `setup()` or the `loop()` method. In this example I used a method to draw a line. It is defined as follows:
+
+{lang="cpp"}
+    void drawLine(x1, y1, x2, y2);
+
+The x1/y1 coordinates define the starting point of the line and x2/y2 define the end. The origin of this coordinate system is the top left corner. This is quite usual if you have ever worked with any graphical programming. If you are used to algebraic graphs then you might expect the y axis to direct up rather than down.
+
+![The SSD1306 driver's coordinate system](images/SSD1306Coordinates.jpg)
+
+X> ## Exercise 05.01: X marks the spot!
+X>
+X> Now you should have all the information you need to draw your first objects to the display. Open the sketch in the
+X> folder `Exercise_05_01` and draw two lines. The first from top left to bottom right, the second from bottom left to top
+X> right so that the form a white cross which spans the whole display. 
