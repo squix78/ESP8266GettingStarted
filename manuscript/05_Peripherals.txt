@@ -157,3 +157,10 @@ With these two methods you can draw a hollow or filled circle. There is also ano
 
     // Mirror the display (to be used in a mirror or as a projector)
     void mirrorScreen();
+
+X> ## Exercise 05.05: Read the Manual
+X>
+X> This exercise is all about helping yourself. The goal is to write text on the screen that automatically wraps to
+X> the next line when a line fills the width of the screen. Further all lines should be aligned at the center of the
+X> screen. We did not discuss the necessary methods here, but with a bit of digging you find everything you need to know
+X> here: <https://github.com/ThingPulse/esp8266-oled-ssd1306/blob/master/src/OLEDDisplay.h>
