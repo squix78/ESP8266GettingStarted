@@ -164,3 +164,11 @@ X> This exercise is all about helping yourself. The goal is to write text on the
 X> the next line when a line fills the width of the screen. Further all lines should be aligned at the center of the
 X> screen. We did not discuss the necessary methods here, but with a bit of digging you find everything you need to know
 X> here: <https://github.com/ThingPulse/esp8266-oled-ssd1306/blob/master/src/OLEDDisplay.h>
+
+## The DHT Sensor
+
+The ESP8266 WeatherStation comes with a temperature and humidity sensor called `DHT11`. The little breakout board has two additional components so that you only have to use three wires to connect the sensor to your ESP8266. The sensor uses a proprietary protocol for communication with the micro controller. If you want to find out more about the sensor or the protocol you can have a look at this data sheet: <https://www.mouser.com/ds/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf>. The DHT11 or its more precise sibling the DHT22 are quite popular in the Arduino world due to their good price and easy usage. Let's have a look now how we can use it.
+
+## Wiring the Sensor
+
+![DHT11 Wiring](images/DHT11Wiring.png)
