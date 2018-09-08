@@ -102,7 +102,7 @@ X> ## Exercise 05.02: Animate!
 X>
 X> Great, you drew your first object onto the screen! Now let's animate the objects. Instead of using fix values for the
 X> line coordinates we can also use variables. Use a variable `y` to move the start and end points up and down. Remember
-Y> that operations you want to execute repeatedly need to be in the `loop()` method.
+X> that operations you want to execute repeatedly need to be in the `loop()` method.
 
 ## Hello World
 
@@ -121,7 +121,7 @@ The SSD1306 library comes with 3 built-in fonts: ArialMT_Plain_10, ArialMT_Plain
 X> ## Exercise 05.03: Hello World!
 X>
 X> Write the text "Hello World" to the OLED display. When you have this working go on and extend this exercise by adding a
-Y> counter to display "Hello World 1", "Hello World 2", etc.
+X> counter to display "Hello World 1", "Hello World 2", etc.
 
 The fonts we use here are bitmap fonts. Unlike the vector fonts you usually use in MS Word and other text processing applications these bitmap fonts have a fixed appearance (size, weight, etc). If you need another size you have to generate a font file and include it's proprietary format in your sketch. I created a web tool that lets you do that with as little effort as possible. On the site <http://oleddisplay.squix.ch/> and choose a font you would like to use in the sketch. There is even a preview that helps you to pick the right font and size. After you click the `Create` button you need to copy the results into a new tab in the Arduino IDE.
 
@@ -130,7 +130,7 @@ X>
 X> Use the tool at <http://oleddisplay.squix.ch/> and create a file for the Font Rancho, 16pt, bold. Add a new tab to our
 X> Arduino sketch and name it Rancho_Regular_16.h. Copy the created font into this tab and save the file. In the main
 X> sketch add #include "Rancho_Regular_16.h" and use the new font by calling `display.setFont(Rancho_Regular_16);`. Finally
-Y> write "Crunchy Rancho" to the display. * Please Note:* if you get a compile error `invalid conversion from 'const char*' to 'const uint8_t*` then please change the third line in "Rancho_regular_16.h" from 'const char Rancho_Regular_16' to 'const uint8_t Rancho_Regular_16'
+X> write "Crunchy Rancho" to the display. * Please Note:* if you get a compile error `invalid conversion from 'const char*' to 'const uint8_t*` then please change the third line in "Rancho_regular_16.h" from 'const char Rancho_Regular_16' to 'const uint8_t Rancho_Regular_16'
 
 ## More Drawing Methods
 
