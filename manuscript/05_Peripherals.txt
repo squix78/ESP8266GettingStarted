@@ -32,7 +32,7 @@ Please note: there are versions of the OLED display with swapped `GND` and `VCC`
 | D3          | SDA              |
 | D4          | SCL              |
 
-As mentioned earlier, there exists a little confusion about the pin names. The Arduino IDE uses the GPIO number given by the chip. The NodeMCU team who designed the board changed the pin naming for their LUA firmware. If you are programming a NodeMCU module you can use the printed `D#` names. If you use a generic ESP8266 module then you have to use the corresponding GPIO numbers. Here is a table of the mapping:
+As mentioned earlier, there exists a little confusion about the pin names. The Arduino IDE uses the GPIO number given by the chip. The NodeMCU team who designed the board changed the pin naming for their Lua firmware. If you are programming a NodeMCU module you can use the printed `D#` names. If you use a generic ESP8266 module then you have to use the corresponding GPIO numbers. Here is a table of the mapping:
 
 | NodeMCU Index | ESP8266 Internal | NodeMCU Index | ESP8266 Internal | 
 |---------------|------------------|---------------|------------------|
