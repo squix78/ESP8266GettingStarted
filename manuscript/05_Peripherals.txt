@@ -171,4 +171,12 @@ The ESP8266 WeatherStation comes with a temperature and humidity sensor called `
 
 ## Wiring the Sensor
 
+The following diagram shows you how to connect the sensor to the NodeMCU module. You can leave the display connected, we will use it again at the end of this chapter.
+
+| NodeMCU Pin | DHT Pin          |
+|-------------|------------------|
+| 3V3         | VCC              |
+| GND         | GND              |
+| D6          | DAT              |
+
 ![DHT11 Wiring](images/DHT11Wiring.png)
