@@ -180,3 +180,30 @@ The following diagram shows you how to connect the sensor to the NodeMCU module.
 | D6          | DAT              |
 
 ![DHT11 Wiring](images/DHT11Wiring.png)
+
+## Installing the Libraries
+
+Now we need to install the library for the DHT sensor. You can choose from several options but for these exercises we are going to take DHT library from Bernd Giesecke (beegee-tokyo). Go to `Sketch > Include Library… > Manage Libraries…` and install this library:
+
+![ESP DHT Library](images/DHTLib.png)
+
+
+## Using the Sensor
+
+Using the library is easy. We need to include a few header files and initialize the driver. The first parameter
+
+{lang="cpp"}
+    #include "DHTesp.h"
+
+    DHTesp dht;
+
+In the setup method we have to define the pin we use and the sensor type. In case you use a DHT22 sensor change the second paramter accordingly:
+
+{lang="cpp"}
+    dht.setup(D6, DHTesp::DHT11);
+
+Now reading temperature and humidity is a piece of cake:
+
+{lang="cpp"}
+    float humidity = dht.getHumidity();
+    float temperature = dht.getTemperature();
