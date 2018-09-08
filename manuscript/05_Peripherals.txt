@@ -207,3 +207,9 @@ Now reading temperature and humidity is a piece of cake:
 {lang="cpp"}
     float humidity = dht.getHumidity();
     float temperature = dht.getTemperature();
+
+X> ## Exercise 05.06: The Heat is On!
+X>
+X> In this exercise you'll put the pieces together to read temperature and humidity from the DHT11 sensor. Include the
+X> correct header file, declare the sensor driver before the `setup()` method, tell the driver which pin and sensor type
+X> you are using in the `setup()` method. Finally read humidity and temperature and write the values to the serial console.
