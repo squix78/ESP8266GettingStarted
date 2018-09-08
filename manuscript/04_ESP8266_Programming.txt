@@ -116,7 +116,7 @@ The second statement will show a `HIGH` level on `PIN` which will be 3.3V. The t
 What values for `PIN` can you use? If you are using a generic ESP8266 module (not a NodeMCU) your pins will be labeled
 `GPIO0`, `GPIO1`, etc. To use pin GPIO0 you would write `digitalWrite(0, HIGH);`
 
-If you are using a NodeMCU things get a little bit more complicated. The original creators of the NodeMCU LUA firmware and
+If you are using a NodeMCU things get a little bit more complicated. The original creators of the NodeMCU Lua firmware and
 the development module of the same name had the idea to give the pins different names. They are called `D0`, `D1`, etc.
 That by itself would not be confusing yet but they are not using the same digits, e.g. `GPIO1` is not equal to `D1`. Here
 is a table to map the pins:
